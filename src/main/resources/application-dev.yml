@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  profiles: dev
+#日志
+logging:
+  #日志配置文件位置
+  config: classpath:log/logback-spring.xml
+  #日志打印位置，这里是默认在项目根路径下
+  path: log/spring-boot-log

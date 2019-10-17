@@ -1,1 +1,18 @@
+#选择哪一个环境的配置
+spring:
+  profiles:
+    active: dev
 
+#mysql
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/demo?useSSL=FALSE&serverTimezone=UTC&charaterEncoding=utf8
+    username: root
+    password: 123456
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:**/*Mapper.xml
+  typeAliasesPackage: com.groupthree.ordersystem.entity
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
