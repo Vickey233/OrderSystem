@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupthree.ordersystem.dao.CommodityDAO">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.groupthree.ordersystem.entity.Commodity">
+        <id column="commodityId" property="commodityId" />
+        <result column="commodityName" property="commodityName" />
+        <result column="imagePath" property="imagePath" />
+        <result column="price" property="price" />
+        <result column="commodityDesc" property="commodityDesc" />
+        <result column="createDate" property="createDate" />
+        <result column="updateDate" property="updateDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        commodityId, commodityName, imagePath, price, commodityDesc, createDate, updateDate
+    </sql>
+    <select id="getCommodityPage" resultType="com.groupthree.ordersystem.vo.CommodityVo">
+        select * from commodity
+    </select>
+
+</mapper>

@@ -7,12 +7,12 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/demo?useSSL=FALSE&serverTimezone=UTC&charaterEncoding=utf8
+    url: jdbc:mysql://localhost/ordersystem?useSSL=FALSE&serverTimezone=UTC&charaterEncoding=utf8
     username: root
     password: 123456
 
 #mybatis-plus
 mybatis-plus:
-  mapper-locations: classpath:**/*Mapper.xml
+  mapper-locations: classpath:mapper/*.xml
   typeAliasesPackage: com.groupthree.ordersystem.entity
   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,26 +1,43 @@
 package com.groupthree.ordersystem.controller;
 
-import com.groupthree.ordersystem.aop.WebLog;
-import com.groupthree.ordersystem.common.BaseException;
-import com.groupthree.ordersystem.enums.ResultEnum;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import com.groupthree.ordersystem.entity.User;
+import com.groupthree.ordersystem.service.UserService;
+import com.groupthree.ordersystem.utils.ResultUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-@Controller
-@Slf4j
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author LR
+ * @since 2019-10-18
+ */
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
-    @WebLog(description = "请求了hello接口")
-    @RequestMapping("/hello")
-    @ResponseBody
-    public String print(){
-        log.info("hello!");
-        throw new BaseException(ResultEnum.UNKONW_ERROR);
-//        return "Hello!";
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Object login(@RequestBody Map<String, Object> map, HttpServletRequest request) throws Exception{
+        System.out.println(map.get("phoneNumber").toString()+"   "+map.get("password").toString());
+        return userService.Login(request,map.get("phoneNumber").toString(),map.get("password").toString());
     }
+
+    @RequestMapping(value = "/regist", method = RequestMethod.POST)
+    public Object regist(@RequestBody User user) throws Exception {
+        return userService.addUser(user);
+    }
+
 }

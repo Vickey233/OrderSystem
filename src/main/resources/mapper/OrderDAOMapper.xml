@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupthree.ordersystem.dao.OrderDAO">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.groupthree.ordersystem.entity.Order">
+        <id column="orderId" property="orderId" />
+        <result column="userId" property="userId" />
+        <result column="commodityId" property="commodityId" />
+        <result column="statue" property="statue" />
+        <result column="sum" property="sum" />
+        <result column="createDate" property="createDate" />
+        <result column="updateDate" property="updateDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        orderId, userId, commodityId, statue, sum, createDate, updateDate
+    </sql>
+    <select id="getOrderPage" resultType="com.groupthree.ordersystem.vo.OrderVO">
+
+    </select>
+
+</mapper>

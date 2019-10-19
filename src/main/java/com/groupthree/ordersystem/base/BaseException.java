@@ -1,4 +1,4 @@
-package com.groupthree.ordersystem.common;
+package com.groupthree.ordersystem.base;
 
 import com.groupthree.ordersystem.enums.ResultEnum;
 
