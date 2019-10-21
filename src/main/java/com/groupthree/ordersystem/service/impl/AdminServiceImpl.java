@@ -5,9 +5,13 @@ import com.groupthree.ordersystem.entity.Admin;
 import com.groupthree.ordersystem.dao.AdminDAO;
 import com.groupthree.ordersystem.service.AdminService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.groupthree.ordersystem.utils.MD5Util;
+import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.UserVo;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -21,4 +25,30 @@ import java.util.List;
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements AdminService {
 
+    public Long getId() {
+        return baseMapper.getId();
+    }
+
+    public Admin getAdminUserById(Integer adminId) {
+        return baseMapper.selectById(adminId);
+    }
+
+    public Object Login(HttpServletRequest request, String phoneNumber, String password) throws Exception {
+        Admin admin=baseMapper.findAdminByPhoneNumber(phoneNumber);
+//        String prepassword=password;
+//        password= MD5Util.md5(password,password);
+        HttpSession session=request.getSession();
+        if(admin!=null)
+        {
+            if(MD5Util.verify(password,password,admin.getPassWord()))
+            {
+                session.setAttribute("Admin",admin);
+                return ResultUtil.successTip("登录成功");
+            }
+            else{
+                return ResultUtil.error("密码错误");
+            }
+        }
+        return ResultUtil.error("账号不存在");
+    }
 }

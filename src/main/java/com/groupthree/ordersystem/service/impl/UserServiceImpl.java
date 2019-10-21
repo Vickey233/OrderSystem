@@ -79,5 +79,6 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     public void deleteUser(Integer userId) {
         User user=this.getUserById(userId);
         baseMapper.deleteById(user);
+
     }
 }

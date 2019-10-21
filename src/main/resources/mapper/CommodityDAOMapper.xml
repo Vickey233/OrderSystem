@@ -17,8 +17,20 @@
     <sql id="Base_Column_List">
         commodityId, commodityName, imagePath, price, commodityDesc, createDate, updateDate
     </sql>
+    <select id="getId" resultType="java.lang.Long">
+        select SEQ_PARTY_ACCOUNT_ID.NEXTVAL from dual
+    </select>
     <select id="getCommodityPage" resultType="com.groupthree.ordersystem.vo.CommodityVo">
         select * from commodity
+    </select>
+    <insert id="insertOne">
+
+    </insert>
+    <update id="updateByCommodityId">
+
+    </update>
+    <select id="getShowCommodity" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
+
     </select>
 
 </mapper>

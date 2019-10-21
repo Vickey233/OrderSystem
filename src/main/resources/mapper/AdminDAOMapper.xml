@@ -15,5 +15,10 @@
     <sql id="Base_Column_List">
         adminId, phoneNumber, passWord, createDate, updateDate
     </sql>
-
+    <select id="getId" resultType="java.lang.Long">
+        select SEQ_PARTY_ACCOUNT_ID.NEXTVAL from dual
+    </select>
+    <select id="findAdminByPhoneNumber" resultType="com.groupthree.ordersystem.entity.Admin">
+        select * from admin where phoneNumber=#{phoneNumber,jdbcType=VARCHAR};
+    </select>
 </mapper>

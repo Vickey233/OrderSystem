@@ -13,4 +13,18 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface OrderService extends IService<Order> {
 
+    /**
+     * 主键
+     * @return
+     */
+    public Long getId();
+
+    /**
+     * 查询用户  分页
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    public Object getOrderPage(Integer pageNo, Integer pageSize);
+
 }

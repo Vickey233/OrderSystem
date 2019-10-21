@@ -1,26 +1,21 @@
 package com.groupthree.ordersystem.vo;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.FieldFill;
 import lombok.Data;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 public class OrderVO {
 
     private  Integer orderId;
 
+    private Integer userId;
+
     private Integer realName;
 
-    private Integer commodityName;
+    private String phoneNumber;
 
-    private Integer statue;
+    private String address;
 
-    private Double sum;
-
-    private Date createDate;
-
-    private Date updateDate;
+    private List<ShowCommodityVo> commodityList;
 }

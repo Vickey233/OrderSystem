@@ -8,6 +8,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.groupthree.ordersystem.aop.WebLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ public class KaptchaController {
      * @param httpServletResponse
      * @throws Exception
      */
+    @WebLog(description = "获取验证码")
     @RequestMapping("/defaultKaptcha")
     public void defaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws Exception {
@@ -65,6 +67,7 @@ public class KaptchaController {
      * @param httpServletResponse
      * @return
      */
+    @WebLog(description = "验证，验证码")
     @RequestMapping("/imgvrifyControllerDefaultKaptcha")
     public ModelAndView imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest,
                                                          HttpServletResponse httpServletResponse) {

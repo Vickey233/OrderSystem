@@ -2,12 +2,8 @@ package com.groupthree.ordersystem.vo;
 
 import lombok.Data;
 
-import java.util.Date;
-
-
 @Data
-public class CommodityVo {
-
+public class EditCommodityVo {
     private Integer commodityId;
 
     private String commodityName;
@@ -17,7 +13,4 @@ public class CommodityVo {
     private Double price;
 
     private String commodityDesc;
-
-    private Date createDate;
 }
-

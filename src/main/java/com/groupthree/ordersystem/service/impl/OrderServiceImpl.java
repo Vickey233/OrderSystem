@@ -17,4 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements OrderService {
 
+    @Override
+    public Long getId() {
+        return null;
+    }
+
+    @Override
+    public Object getOrderPage(Integer pageNo, Integer pageSize) {
+        return null;
+    }
 }

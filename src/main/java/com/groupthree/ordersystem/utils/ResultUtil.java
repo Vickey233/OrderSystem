@@ -9,6 +9,10 @@ public class ResultUtil {
         return commonResult(1, 200, "请求成功", data);
     }
 
+    public static Object success(String msg,Object data) {
+        return commonResult(1, 200, msg, data);
+    }
+
     public static Object successTip(String msg) {
         return commonResultTip(1, 200, msg);
     }
