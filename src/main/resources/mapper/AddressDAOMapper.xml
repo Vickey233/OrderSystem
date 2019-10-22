@@ -5,12 +5,15 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.groupthree.ordersystem.entity.Address">
         <id column="addressId" property="addressId" />
+        <result column="userId" property="userId" />
         <result column="address" property="address" />
+        <result column="contact" property="contact" />
+        <result column="phoneNumber" property="phoneNumber" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        addressId, address
+        addressId, userId, address, contact, phoneNumber
     </sql>
 
 </mapper>

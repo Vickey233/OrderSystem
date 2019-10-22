@@ -40,15 +40,18 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
     }
 
     public Object insertOne(String commodityName, String commodityDesc, String imagePath, Double price) {
-        return ResultUtil.success(baseMapper.insertOne(commodityName, commodityDesc, imagePath, price));
+        baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
+        Commodity commodity=baseMapper.getBycommodityName(commodityName);
+        return ResultUtil.success(commodity.getCommodityId());
     }
 
     public Object updateMsg(EditCommodityVo editCommodityVo) {
-        return ResultUtil.success(baseMapper.updateByCommodityId(editCommodityVo.getCommodityId(),
+        baseMapper.updateByCommodityId(editCommodityVo.getCommodityId(),
                 editCommodityVo.getCommodityName(),
                 editCommodityVo.getCommodityDesc(),
                 editCommodityVo.getImagePath(),
-                editCommodityVo.getPrice()));
+                editCommodityVo.getPrice());
+        return ResultUtil.success(editCommodityVo.getCommodityId());
     }
 
     public Object delete(Integer commodityId){

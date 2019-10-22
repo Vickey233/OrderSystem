@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.groupthree.ordersystem.vo.CommodityVo;
 import com.groupthree.ordersystem.vo.EditCommodityVo;
 import com.groupthree.ordersystem.vo.ShowCommodityVo;
+import org.hibernate.validator.internal.constraintvalidators.bv.time.past.PastValidatorForYear;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ import java.util.List;
 public interface CommodityDAO extends BaseMapper<Commodity> {
 
     public Long getId();
+
+    public Commodity getBycommodityName(String commodityName);
 
     public List<CommodityVo> getCommodityPage(String commodityName, Page<CommodityVo> page);
 

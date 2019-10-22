@@ -18,4 +18,6 @@ import java.util.List;
 public interface OrderDAO extends BaseMapper<Order> {
 
     public List<OrderVO> getOrderPage(Page<OrderVO> page);
+
+    public List<OrderVO> getOrderPageByTime(String begintime, String overtime);
 }

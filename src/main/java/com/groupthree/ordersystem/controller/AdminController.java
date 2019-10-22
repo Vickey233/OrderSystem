@@ -27,6 +27,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @WebLog(description = "获取用户列表")
     @RequestMapping("/userList")
     public Object userList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize)
@@ -36,8 +39,7 @@ public class AdminController {
 
     @WebLog(description = "管理员登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(@RequestBody Map<String, Object> map, HttpServletRequest request) throws Exception{
-        System.out.println(map.get("phoneNumber").toString()+"   "+map.get("password").toString());
-        return userService.Login(request,map.get("phoneNumber").toString(),map.get("password").toString());
+    public Object login(@RequestBody Map<String, Object> map) throws Exception{
+        return userService.login(request, map.get("phoneNumber").toString(),map.get("password").toString());
     }
 }

@@ -31,9 +31,14 @@ public class MD5Util {
      * @return true/false
      * @throws Exception
      */
-    public static boolean verify(String text, String key, String md5) throws Exception {
+    public static boolean verify(String text, String key, String md5) {
         //根据传入的密钥进行验证
-        String md5Text = md5(text, key);
+        String md5Text = null;
+        try {
+            md5Text = md5(text, key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if(md5Text.equalsIgnoreCase(md5))
         {
             System.out.println("MD5验证通过");

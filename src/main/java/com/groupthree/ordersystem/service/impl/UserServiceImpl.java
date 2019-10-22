@@ -42,17 +42,17 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         return ResultUtil.success(page);
     }
 
-    public Object Login(HttpServletRequest request, String phoneNumber, String password) throws Exception {
+    public Object login(HttpServletRequest request,String phoneNumber, String passWord) {
         User user=baseMapper.findUserByPhoneNumber(phoneNumber);
 //        String prepassword=password;
 //        password= MD5Util.md5(password,password);
         HttpSession session=request.getSession();
         if(user!=null)
         {
-            if(MD5Util.verify(password,password,user.getPassWord()))
+            if(MD5Util.verify(passWord,passWord,user.getPassWord()))
             {
                 session.setAttribute("User",user);
-                return ResultUtil.successTip("登录成功");
+                return ResultUtil.success("登录成功！",user);
             }
             else{
                 return ResultUtil.error("密码错误");

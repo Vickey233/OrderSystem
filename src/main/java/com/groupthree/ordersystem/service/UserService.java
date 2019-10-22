@@ -37,7 +37,7 @@ public interface UserService extends IService<User> {
      * @param phoneNumber
      * @return
      */
-    public Object Login(HttpServletRequest request, String phoneNumber, String password) throws Exception;
+    public Object login(HttpServletRequest request, String phoneNumber, String passWord);
 
 
     /**

@@ -20,11 +20,18 @@ public interface OrderService extends IService<Order> {
     public Long getId();
 
     /**
-     * 查询用户  分页
+     * 查询订单  分页
      * @param pageNo
      * @param pageSize
      * @return
      */
     public Object getOrderPage(Integer pageNo, Integer pageSize);
 
+    /**
+     * 按时间查询订单  分页
+     * @param begintime
+     * @param overtime
+     * @return
+     */
+    public Object getOrderPageByTime(String begintime, String overtime);
 }

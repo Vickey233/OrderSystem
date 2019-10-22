@@ -4,6 +4,7 @@ package com.groupthree.ordersystem.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * @author LR
  * @since 2019-10-18
  */
-@Controller
+@RestController
 @RequestMapping("/address")
 public class AddressController {
 

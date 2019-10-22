@@ -32,5 +32,8 @@
     <select id="getShowCommodity" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
     </select>
+    <select id="getBycommodityName" resultMap="BaseResultMap">
+
+    </select>
 
 </mapper>

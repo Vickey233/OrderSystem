@@ -26,14 +26,12 @@ public class Order extends Model<Order> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "orderId",type = IdType.AUTO)
+    @TableId(value = "orderId")
     private Integer orderId;
 
     private Integer userId;
 
-    private Integer commodityId;
-
-    private Integer statue;
+    private String statue;
 
     private Double sum;
 

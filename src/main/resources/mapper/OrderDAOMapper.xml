@@ -6,7 +6,6 @@
     <resultMap id="BaseResultMap" type="com.groupthree.ordersystem.entity.Order">
         <id column="orderId" property="orderId" />
         <result column="userId" property="userId" />
-        <result column="commodityId" property="commodityId" />
         <result column="statue" property="statue" />
         <result column="sum" property="sum" />
         <result column="createDate" property="createDate" />
@@ -15,9 +14,12 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        orderId, userId, commodityId, statue, sum, createDate, updateDate
+        orderId, userId, statue, `sum`, createDate, updateDate
     </sql>
     <select id="getOrderPage" resultType="com.groupthree.ordersystem.vo.OrderVO">
+        select * from `order`
+    </select>
+    <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
 
     </select>
 

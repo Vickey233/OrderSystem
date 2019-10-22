@@ -38,8 +38,6 @@ public class User extends Model<User> {
 
     private String realName;
 
-    private Integer addressId;
-
     private Double money;
 
     @TableField(value = "createDate", fill = FieldFill.INSERT)

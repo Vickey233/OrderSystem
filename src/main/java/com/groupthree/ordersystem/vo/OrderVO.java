@@ -16,6 +16,4 @@ public class OrderVO {
     private String phoneNumber;
 
     private String address;
-
-    private List<ShowCommodityVo> commodityList;
 }

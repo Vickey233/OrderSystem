@@ -12,7 +12,9 @@ public class MyMetaObjHandler extends MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         //新增时填充的字段
+        System.out.println(new Date());
         setFieldValByName("createDate", new Date(), metaObject);
+        setFieldValByName("updateDate", new Date(), metaObject);
 
     }
 

@@ -24,7 +24,7 @@ public class MpGenerator {
      * </p>
      */
     public static void main(String[] args) {
-        String[] tables=new String[]{"user","order","address","admin","commodity"};
+        String[] tables=new String[]{"user","order","address","admin","commodity","order_commodity"};
         generaterCode(tables);
     }
 
@@ -38,7 +38,7 @@ public class MpGenerator {
         gc.setAuthor("LR");
         //改成自己的项目路径
         gc.setOutputDir("E:\\1sha\\new_ordersystem\\src\\main\\java");
-        gc.setFileOverride(true);// 是否覆盖同名文件，默认是false
+        gc.setFileOverride(false);// 是否覆盖同名文件，默认是false
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap

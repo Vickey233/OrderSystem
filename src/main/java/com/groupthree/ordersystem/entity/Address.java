@@ -29,7 +29,13 @@ public class Address extends Model<Address> {
     @TableId(value = "addressId",type = IdType.AUTO)
     private Integer addressId;
 
+    private Integer userId;
+
     private String address;
+
+    private String contact;
+
+    private String phoneNumber;
 
 
     @Override

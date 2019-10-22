@@ -2,11 +2,13 @@ package com.groupthree.ordersystem.entity;
 
 import java.util.Date;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
+
 import com.baomidou.mybatisplus.annotations.Version;
 
 import com.baomidou.mybatisplus.enums.FieldFill;
@@ -21,22 +23,23 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author LR
- * @since 2019-10-18
+ * @since 2019-10-22
  */
 @Data
 @Accessors(chain = true)
-public class Admin extends Model<Admin> {
+@TableName("order_commodity")
+public class OrderCommodity extends Model<OrderCommodity> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "adminId",type = IdType.AUTO)
-    private Integer adminId;
+    @TableId(value = "ordercomId",type = IdType.AUTO)
+    private Integer ordercomId;
 
-    private String phoneNumber;
+    private Integer orderId;
 
-    private String realName;
+    private Integer commodityId;
 
-    private String passWord;
+    private Integer count;
 
     @TableField(value = "createDate", fill = FieldFill.INSERT)
     private Date createDate;
@@ -47,7 +50,7 @@ public class Admin extends Model<Admin> {
 
     @Override
     protected Serializable pkVal() {
-        return this.adminId;
+        return this.ordercomId;
     }
 
 }
