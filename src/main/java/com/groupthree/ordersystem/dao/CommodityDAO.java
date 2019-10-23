@@ -26,7 +26,9 @@ public interface CommodityDAO extends BaseMapper<Commodity> {
 
     public List<CommodityVo> getCommodityPage(String commodityName, Page<CommodityVo> page);
 
-    public List<ShowCommodityVo> getShowCommodity(String commodityName, Page<ShowCommodityVo> page);
+    public ShowCommodityVo getShowCommodityVo(Integer commodityId);
+
+    public List<ShowCommodityVo> getShowCommodityList(String commodityName, Page<ShowCommodityVo> page);
 
     public Integer insertOne(String commodityName, String commodityDesc, String imagePath, Double price);
 

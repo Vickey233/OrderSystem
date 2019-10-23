@@ -33,7 +33,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements Ad
         return baseMapper.selectById(adminId);
     }
 
-    public Object Login(HttpServletRequest request, String phoneNumber, String password) throws Exception {
+    public Object login(HttpServletRequest request, String phoneNumber, String password) throws Exception {
         Admin admin=baseMapper.findAdminByPhoneNumber(phoneNumber);
 //        String prepassword=password;
 //        password= MD5Util.md5(password,password);

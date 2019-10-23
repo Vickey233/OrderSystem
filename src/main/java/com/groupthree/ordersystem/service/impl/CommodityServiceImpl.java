@@ -45,6 +45,10 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
         return ResultUtil.success(commodity.getCommodityId());
     }
 
+    public Object getCommdityMsg(Integer commodityId){
+        return ResultUtil.success(baseMapper.getShowCommodityVo(commodityId));
+    }
+
     public Object updateMsg(EditCommodityVo editCommodityVo) {
         baseMapper.updateByCommodityId(editCommodityVo.getCommodityId(),
                 editCommodityVo.getCommodityName(),

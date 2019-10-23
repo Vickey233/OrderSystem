@@ -29,10 +29,13 @@
     <update id="updateByCommodityId">
 
     </update>
-    <select id="getShowCommodity" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
+    <select id="getShowCommodityList" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
     </select>
     <select id="getBycommodityName" resultMap="BaseResultMap">
+
+    </select>
+    <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
     </select>
 

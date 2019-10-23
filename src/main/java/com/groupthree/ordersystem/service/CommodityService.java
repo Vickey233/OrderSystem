@@ -45,5 +45,7 @@ public interface CommodityService extends IService<Commodity> {
      */
     public Object updateMsg(EditCommodityVo editCommodityVo);
 
+    public Object getCommdityMsg(Integer commodityId);
+
     public Object delete(Integer commodityId);
 }

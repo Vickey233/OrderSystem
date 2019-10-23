@@ -15,5 +15,11 @@
     <sql id="Base_Column_List">
         addressId, userId, address, contact, phoneNumber
     </sql>
+    <select id="getId" resultType="java.lang.Long">
+        select SEQ_PARTY_ACCOUNT_ID.NEXTVAL from dual
+    </select>
+    <select id="getAddressVo" resultType="com.groupthree.ordersystem.vo.AddressVo">
+
+    </select>
 
 </mapper>

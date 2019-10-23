@@ -2,6 +2,7 @@ package com.groupthree.ordersystem.service;
 
 import com.groupthree.ordersystem.entity.Address;
 import com.baomidou.mybatisplus.service.IService;
+import com.groupthree.ordersystem.vo.AddressVo;
 
 /**
  * <p>
@@ -13,4 +14,12 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface AddressService extends IService<Address> {
 
+    /**
+     * 获取地址列表
+     * @param userId
+     * @return
+     */
+    public Object getAddressVo(Integer userId);
+
+    public Object insertAddress(Integer userId,AddressVo addressVo);
 }

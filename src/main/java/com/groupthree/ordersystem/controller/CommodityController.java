@@ -39,4 +39,11 @@ public class CommodityController {
     {
         return commodityService.insertOne(commodityVo.getCommodityName(), commodityVo.getCommodityDesc(), commodityVo.getImagePath(), commodityVo.getPrice());
     }
+
+    @WebLog(description = "获取商品详细信息")
+    @RequestMapping("/commodityMsg")
+    public Object commodityMsg(@RequestParam("commodityId") Integer commodityId)
+    {
+        return commodityService.getCommdityMsg(commodityId);
+    }
 }
