@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LR
@@ -17,12 +17,16 @@ public interface AdminService extends IService<Admin> {
 
     /**
      * 主键
+     *
      * @return
      */
     public Long getId();
 
+    public Admin getAdminById(Integer adminId);
+
     /**
      * 查询管理员  登录
+     *
      * @param phoneNumber
      * @return
      */

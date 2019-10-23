@@ -64,13 +64,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
         return ResultUtil.success(page);
     }
 
-    public Object getOrderStatue(Integer orderId){
+    public Object getOrderStatue(String orderId){
         log.info("获取订单状态");
         Order order=this.selectById(orderId);
         return ResultUtil.success(order.getStatue());
     }
 
-    public Object cancelOrder(Integer orderId){
+    public Object cancelOrder(String orderId){
         log.info("取消订单");
         Order order=this.selectById(orderId);
         order.setStatue("已取消");

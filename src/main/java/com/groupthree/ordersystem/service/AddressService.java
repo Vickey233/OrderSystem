@@ -21,5 +21,7 @@ public interface AddressService extends IService<Address> {
      */
     public Object getAddressVo(Integer userId);
 
+    public Address getAddressById(Integer addressId);
+
     public Object insertAddress(Integer userId,AddressVo addressVo);
 }

@@ -20,6 +20,8 @@ public interface CommodityService extends IService<Commodity> {
      */
     public Long getId();
 
+    public Commodity getCommodityById(Integer commodityId);
+
     /**
      * 查询商品
      * @param pageNo

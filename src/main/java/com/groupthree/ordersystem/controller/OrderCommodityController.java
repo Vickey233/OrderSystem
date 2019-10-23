@@ -28,7 +28,7 @@ public class OrderCommodityController {
 
     @WebLog(description = "获取商品详细列表")
     @RequestMapping(value = "/commodityList",method = RequestMethod.GET)
-    public Object commodityList(@RequestParam("orderId") Integer orderId)
+    public Object commodityList(@RequestParam("orderId") String orderId)
     {
         return orderCommodityService.getOrderComVo(orderId);
     }

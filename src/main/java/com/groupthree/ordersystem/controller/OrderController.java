@@ -42,15 +42,15 @@ public class OrderController {
     }
 
     @WebLog(description = "获取订单状态")
-    @RequestMapping("/orderList")
-    public Object orderList(@RequestParam("orderId") Integer orderId)
+    @RequestMapping("/orderStatue")
+    public Object orderStatue(@RequestParam("orderId") String orderId)
     {
         return orderService.getOrderStatue(orderId);
     }
 
     @WebLog(description = "取消订单")
     @RequestMapping("/cancelList")
-    public Object cancelList(@RequestParam("orderId") Integer orderId)
+    public Object cancelList(@RequestParam("orderId") String orderId)
     {
         return orderService.getOrderStatue(orderId);
     }

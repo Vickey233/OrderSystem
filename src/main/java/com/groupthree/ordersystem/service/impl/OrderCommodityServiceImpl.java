@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 public class OrderCommodityServiceImpl extends ServiceImpl<OrderCommodityDAO, OrderCommodity> implements OrderCommodityService {
 
-    public Object getOrderComVo(Integer orderId){
+    public Object getOrderComVo(String orderId){
         log.info("获取订单详细菜品信息");
         List<OrderComVo> commodityVoList = null;
         commodityVoList = baseMapper.getOrderComVo(orderId);

@@ -18,7 +18,7 @@ public interface OrderCommodityService extends IService<OrderCommodity> {
      * 查询商品详细信息
      * @return
      */
-    public Object getOrderComVo(Integer orderId);
+    public Object getOrderComVo(String orderId);
 
     /**
      * 插入商品列表

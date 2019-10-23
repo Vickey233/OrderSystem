@@ -24,6 +24,8 @@ public interface UserService extends IService<User> {
      */
     public Long getId();
 
+    public User getUserById(Integer userId);
+
     /**
      * 查询用户  分页
      * @param pageNo

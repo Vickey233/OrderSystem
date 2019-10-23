@@ -33,14 +33,14 @@ public interface OrderService extends IService<Order> {
      * @param orderId
      * @return
      */
-    public Object getOrderStatue(Integer orderId);
+    public Object getOrderStatue(String orderId);
 
     /**
      * 取消订单
      * @param orderId
      * @return
      */
-    public Object cancelOrder(Integer orderId);
+    public Object cancelOrder(String orderId);
 
     /**
      * 按时间查询订单  分页
