@@ -27,7 +27,12 @@
              address c
         where a.userId=b.userId
           and b.addressId=c.addressId
-        
+        <if test ="begintime != null and begintime != ' '">
+          and a.createDate=#{begintime}
+        </if> 
+        <if test ="overtime != null and overtime != ' '">
+          and a.updateDate=#{overtime}
+        </if> 
     </select>
 
 </mapper>
