@@ -45,7 +45,11 @@
 
     </select>
     <select id="getBycommodityName" resultMap="BaseResultMap">
-        select commodityName from commodity where commodityName like '%#{commodityName}%'
+        select * from commodity 
+        where         
+        <if test ="commodityName != null and commodityName != ' '">
+            commodityName like CONCAT('%',#{commodityName},'%')
+        </if> 
     </select>
     <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
         select commodityName,commodityDesc,price
