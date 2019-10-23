@@ -29,10 +29,7 @@
     </insert>
     <update id="updateByCommodityId">
         update commodity 
-        <set> 
-             <if test ="commodityId != null and commodityId != ' '">
-                commodityId=#{commodityId},
-             </if>
+        set
              <if test ="commodityName != null and commodityName != ' '">
                 commodityName=#{commodityName},
              </if>
@@ -40,9 +37,9 @@
                 imagePath=#{imagePath},
              </if> 
              <if test ="price != null and price != ' '">
-                 price=#{price}
+                 price=#{price},
              </if>
-         </set>
+         where commodityId=#{commodityId}
     </update>
     <select id="getShowCommodityList" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
@@ -51,7 +48,9 @@
 
     </select>
     <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
-
+        select commodityName,commodityDesc,price
+        from commodity
+        where commodityId=#{commodityId}
     </select>
 
 </mapper>
