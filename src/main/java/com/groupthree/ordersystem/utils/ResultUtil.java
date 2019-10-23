@@ -9,7 +9,7 @@ public class ResultUtil {
         return commonResult(1, 200, "请求成功", data);
     }
 
-    public static Object success(String msg,Object data) {
+    public static Object success(String msg, Object data) {
         return commonResult(1, 200, msg, data);
     }
 

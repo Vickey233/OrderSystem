@@ -22,7 +22,7 @@ public class OrderServiceTest {
 
     @Test
     public void getOrderPage() {
-        orderService.getOrderPage(1,5);
+        orderService.getOrderPage(1, 5);
     }
 
     @Test
@@ -37,14 +37,14 @@ public class OrderServiceTest {
 
     @Test
     public void getOrderPageByTime() {
-        orderService.getOrderPageByTime("","");
+        orderService.getOrderPageByTime("", "");
     }
 
     @Test
     public void insertOrder() {
-        TempOrderVo tempOrderVo=new TempOrderVo();
-        User user=userService.selectById(1);
-        Integer[] commodityList={1,2,3};
+        TempOrderVo tempOrderVo = new TempOrderVo();
+        User user = userService.selectById(1);
+        Integer[] commodityList = {1, 2, 3};
         tempOrderVo.setUserId(user.getUserId());
         tempOrderVo.setAddressId(1);
         tempOrderVo.setPassword(user.getPassWord());

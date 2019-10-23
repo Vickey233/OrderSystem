@@ -1,6 +1,7 @@
 package com.groupthree.ordersystem.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 
@@ -14,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LR
@@ -26,7 +27,7 @@ public class Address extends Model<Address> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "addressId",type = IdType.AUTO)
+    @TableId(value = "addressId", type = IdType.AUTO)
     private Integer addressId;
 
     private Integer userId;
@@ -36,7 +37,6 @@ public class Address extends Model<Address> {
     private String contact;
 
     private String phoneNumber;
-
 
     @Override
     protected Serializable pkVal() {

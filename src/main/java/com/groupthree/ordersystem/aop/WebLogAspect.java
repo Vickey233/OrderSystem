@@ -19,15 +19,21 @@ import java.lang.reflect.Method;
 @Slf4j
 public class WebLogAspect {
 
-    /** 换行符 */
+    /**
+     * 换行符
+     */
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    /** 以自定义 @WebLog 注解为切点 */
+    /**
+     * 以自定义 @WebLog 注解为切点
+     */
     @Pointcut("@annotation(com.groupthree.ordersystem.aop.WebLog)")
-    public void webLog() {}
+    public void webLog() {
+    }
 
     /**
      * 在切点之前织入
+     *
      * @param joinPoint
      * @throws Throwable
      */
@@ -58,6 +64,7 @@ public class WebLogAspect {
 
     /**
      * 在切点之后织入
+     *
      * @throws Throwable
      */
     @After("webLog()")
@@ -68,6 +75,7 @@ public class WebLogAspect {
 
     /**
      * 环绕
+     *
      * @param proceedingJoinPoint
      * @return
      * @throws Throwable

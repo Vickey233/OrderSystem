@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author LR
@@ -23,6 +23,7 @@ public interface UserDAO extends BaseMapper<User> {
 
     /**
      * 主键
+     *
      * @return
      */
     public Long getId();

@@ -57,11 +57,12 @@ public class ImgController {
         return ResultUtil.error("上传失败！");
     }
 
-     /**
+    /**
      * 显示单张图片
+     *
      * @return
      */
-     @WebLog(description = "获取图片地址")
+    @WebLog(description = "获取图片地址")
     @RequestMapping("/show")
     public Object showPhotos(String fileName) {
 

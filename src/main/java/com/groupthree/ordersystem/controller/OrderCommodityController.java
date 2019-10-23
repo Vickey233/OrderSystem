@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author LR
@@ -27,9 +27,8 @@ public class OrderCommodityController {
     private OrderCommodityService orderCommodityService;
 
     @WebLog(description = "获取商品详细列表")
-    @RequestMapping(value = "/commodityList",method = RequestMethod.GET)
-    public Object commodityList(@RequestParam("orderId") String orderId)
-    {
+    @RequestMapping(value = "/commodityList", method = RequestMethod.GET)
+    public Object commodityList(@RequestParam("orderId") String orderId) {
         return orderCommodityService.getOrderComVo(orderId);
     }
 }

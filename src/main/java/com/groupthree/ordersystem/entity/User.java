@@ -1,7 +1,9 @@
 package com.groupthree.ordersystem.entity;
 
 import java.util.Date;
+
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 
@@ -17,7 +19,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LR
@@ -29,7 +31,7 @@ public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "userId",type = IdType.AUTO)
+    @TableId(value = "userId", type = IdType.AUTO)
     private Integer userId;
 
     private String phoneNumber;

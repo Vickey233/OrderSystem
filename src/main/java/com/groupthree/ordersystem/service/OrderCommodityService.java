@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LR
@@ -16,13 +16,15 @@ public interface OrderCommodityService extends IService<OrderCommodity> {
 
     /**
      * 查询商品详细信息
+     *
      * @return
      */
     public Object getOrderComVo(String orderId);
 
     /**
      * 插入商品列表
+     *
      * @return
      */
-    public Object insertCommodityList(String orderId,Integer[] commodityList);
+    public Object insertCommodityList(String orderId, Integer[] commodityList);
 }

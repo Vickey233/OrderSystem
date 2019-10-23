@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </
  *
  * @author LR
@@ -32,16 +32,12 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private  HttpServletRequest request;
+    private HttpServletRequest request;
 
     @WebLog(description = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(@RequestBody Map<String, Object> map){
-        System.out.println(map.get("phoneNumber").toString()+"   "+map.get("passWord").toString());
-        return userService.login(request,map.get("phoneNumber").toString(),map.get("passWord").toString());
+    public Object login(@RequestBody Map<String, Object> map) {
+        return userService.login(request, map.get("phoneNumber").toString(), map.get("passWord").toString());
 
     }
 
@@ -49,5 +45,11 @@ public class UserController {
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public Object regist(@RequestBody User user) throws Exception {
         return userService.addUser(user);
+    }
+
+    @WebLog(description = "冲钱")
+    @RequestMapping(value = "/addMoney", method = RequestMethod.POST)
+    public Object addMoney(@RequestParam("userId") Integer userId, @RequestParam("sum") Double sum) {
+        return userService.moneyBack(userId, sum);
     }
 }

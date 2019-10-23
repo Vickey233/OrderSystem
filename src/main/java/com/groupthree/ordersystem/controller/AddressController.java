@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author LR
@@ -27,9 +27,8 @@ public class AddressController {
     private AddressService addressService;
 
     @WebLog(description = "获取地址列表")
-    @RequestMapping(value = "/addressList",method = RequestMethod.GET)
-    public Object addressList(@RequestParam("userId") Integer userId)
-    {
+    @RequestMapping(value = "/addressList", method = RequestMethod.GET)
+    public Object addressList(@RequestParam("userId") Integer userId) {
         return addressService.getAddressVo(userId);
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 //@EnableTransactionManagement
 @Configuration
-@MapperScan("com.groupthree.ordersystem.*mapper")
+//@MapperScan("com.groupthree.ordersystem.*mapper")
 public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor() {

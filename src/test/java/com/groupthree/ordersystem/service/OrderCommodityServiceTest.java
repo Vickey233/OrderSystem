@@ -15,6 +15,7 @@ public class OrderCommodityServiceTest {
 
     @Autowired
     private OrderCommodityService orderCommodityService;
+
     @Test
     public void getOrderComVo() {
         orderCommodityService.getOrderComVo(" dfsffer");
@@ -22,7 +23,7 @@ public class OrderCommodityServiceTest {
 
     @Test
     public void insertCommodityList() {
-        Integer[] commodityList={1,2,3};
-        orderCommodityService.insertCommodityList("",commodityList);
+        Integer[] commodityList = {1, 2, 3};
+        orderCommodityService.insertCommodityList("", commodityList);
     }
 }

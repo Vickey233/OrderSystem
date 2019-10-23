@@ -20,6 +20,7 @@ public class AdminServiceTest {
 
     @Autowired
     private HttpServletRequest request;
+
     @Test
     public void getId() {
         Assert.assertEquals(adminService.getAdminById(1).getRealName(), "大明");
@@ -27,6 +28,6 @@ public class AdminServiceTest {
 
     @Test
     public void login() throws Exception {
-        adminService.login(request,"18120732222","a123456");
+        adminService.login(request, "18120732222", "a123456");
     }
 }

@@ -27,6 +27,7 @@ public class KaptchaController {
 
     /**
      * 2、生成验证码
+     *
      * @param httpServletRequest
      * @param httpServletResponse
      * @throws Exception
@@ -63,6 +64,7 @@ public class KaptchaController {
 
     /**
      * 3、校对验证码
+     *
      * @param httpServletRequest
      * @param httpServletResponse
      * @return
@@ -74,7 +76,7 @@ public class KaptchaController {
         ModelAndView andView = new ModelAndView();
         String rightCode = (String) httpServletRequest.getSession().getAttribute("rightCode");
         String tryCode = httpServletRequest.getParameter("tryCode");
-        System.out.println("rightCode:"+rightCode+" ———— tryCode:"+tryCode);
+        System.out.println("rightCode:" + rightCode + " ———— tryCode:" + tryCode);
         if (!rightCode.equals(tryCode)) {
             andView.addObject("info", "错误的验证码");
             andView.setViewName("index");

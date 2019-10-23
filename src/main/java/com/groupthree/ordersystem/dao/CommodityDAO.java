@@ -32,5 +32,5 @@ public interface CommodityDAO extends BaseMapper<Commodity> {
 
     public Integer insertOne(String commodityName, String commodityDesc, String imagePath, Double price);
 
-    public Integer updateByCommodityId(Integer commodityId,String commodityName, String commodityDesc, String imagePath, Double price);
+    public Integer updateByCommodityId(Integer commodityId, String commodityName, String commodityDesc, String imagePath, Double price);
 }

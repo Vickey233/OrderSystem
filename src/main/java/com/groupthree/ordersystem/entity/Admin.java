@@ -1,7 +1,9 @@
 package com.groupthree.ordersystem.entity;
 
 import java.util.Date;
+
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 
@@ -17,7 +19,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LR
@@ -29,7 +31,7 @@ public class Admin extends Model<Admin> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "adminId",type = IdType.AUTO)
+    @TableId(value = "adminId", type = IdType.AUTO)
     private Integer adminId;
 
     private String phoneNumber;

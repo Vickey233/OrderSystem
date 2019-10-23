@@ -6,7 +6,7 @@ import com.groupthree.ordersystem.vo.AddressVo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LR
@@ -16,6 +16,7 @@ public interface AddressService extends IService<Address> {
 
     /**
      * 获取地址列表
+     *
      * @param userId
      * @return
      */
@@ -23,5 +24,5 @@ public interface AddressService extends IService<Address> {
 
     public Address getAddressById(Integer addressId);
 
-    public Object insertAddress(Integer userId,AddressVo addressVo);
+    public Object insertAddress(Integer userId, AddressVo addressVo);
 }

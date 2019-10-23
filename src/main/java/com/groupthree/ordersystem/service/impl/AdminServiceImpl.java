@@ -25,6 +25,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
+
 public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements AdminService {
 
     public Long getId() {

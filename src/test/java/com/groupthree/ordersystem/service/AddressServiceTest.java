@@ -20,18 +20,18 @@ public class AddressServiceTest {
 
     @Test
     public void getAddressVo() {
-        AddressVo addressVo=(AddressVo) addressService.getAddressVo(1);
-        Assert.assertEquals(addressVo.getContact(),"张三");
+        AddressVo addressVo = (AddressVo) addressService.getAddressVo(1);
+        Assert.assertEquals(addressVo.getContact(), "张三");
     }
 
     @Test
     public void insertAddress() {
-        AddressVo addressVo=new AddressVo();
+        AddressVo addressVo = new AddressVo();
         addressVo.setAddress("中国");
         addressVo.setContact("李四");
         addressVo.setPhoneNumber("13354268371");
         addressVo.setAddressId(111111);
-        addressService.insertAddress(2,addressVo);
+        addressService.insertAddress(2, addressVo);
     }
 
 }

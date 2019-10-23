@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author LR
@@ -38,28 +38,25 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
 
     public Object getUserPage(Integer pageNo, Integer pageSize) {
         log.info("获取用户列表");
-        List<UserVo> userVoList=null;
-        Page<UserVo> page=new Page<>(pageNo,pageSize);
-        userVoList=baseMapper.getUserPage(page);
+        List<UserVo> userVoList = null;
+        Page<UserVo> page = new Page<>(pageNo, pageSize);
+        userVoList = baseMapper.getUserPage(page);
         page.setRecords(userVoList);
         return ResultUtil.success(page);
     }
 
-    public Object login(HttpServletRequest request,String phoneNumber, String passWord) {
+    public Object login(HttpServletRequest request, String phoneNumber, String passWord) {
         log.info("用户登录");
-        User user=baseMapper.findUserByPhoneNumber(phoneNumber);
+        User user = baseMapper.findUserByPhoneNumber(phoneNumber);
 //        String prepassword=password;
 //        password= MD5Util.md5(password,password);
-        HttpSession session=request.getSession();
-        if(user!=null)
-        {
-            if(MD5Util.verify(passWord,passWord,user.getPassWord()))
-            {
+        HttpSession session = request.getSession();
+        if (user != null) {
+            if (MD5Util.verify(passWord, passWord, user.getPassWord())) {
                 log.info("向session中插入User属性");
-                session.setAttribute("User",user);
-                return ResultUtil.success("登录成功！",user);
-            }
-            else{
+                session.setAttribute("User", user);
+                return ResultUtil.success("登录成功！", user);
+            } else {
                 return ResultUtil.error("密码错误");
             }
         }
@@ -68,10 +65,9 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
 
     public Object addUser(User user) throws Exception {
         log.info("注册/添加用户");
-        User tmp=baseMapper.findUserByPhoneNumber(user.getPhoneNumber());
-        if(tmp == null)
-        {
-            user.setPassWord(MD5Util.md5(user.getPassWord(),user.getPassWord()));
+        User tmp = baseMapper.findUserByPhoneNumber(user.getPhoneNumber());
+        if (tmp == null) {
+            user.setPassWord(MD5Util.md5(user.getPassWord(), user.getPassWord()));
             baseMapper.insert(user);
             return ResultUtil.success("注册成功");
         }
@@ -85,8 +81,27 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
 
     public void deleteUser(Integer userId) {
         log.info("删除用户");
-        User user=this.getUserById(userId);
+        User user = this.getUserById(userId);
         baseMapper.deleteById(user);
 
+    }
+
+    public boolean deductMoney(Integer userId, Double sum) {
+        log.info("支付订单要扣钱，看看够不够");
+        User user = this.getUserById(userId);
+        if (user.getMoney() - sum > 0) {
+            user.setMoney(user.getMoney() - sum);
+            baseMapper.updateById(user);
+            return true;
+        }
+        return false;
+    }
+
+    public Object moneyBack(Integer userId, Double sum) {
+        log.info("不买了，还钱");
+        User user = this.getUserById(userId);
+        user.setMoney(user.getMoney() + sum);
+        baseMapper.updateById(user);
+        return ResultUtil.successTip("冲钱成功！");
     }
 }

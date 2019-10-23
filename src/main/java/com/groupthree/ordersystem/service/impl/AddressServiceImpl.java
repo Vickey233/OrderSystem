@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author LR
@@ -31,22 +31,22 @@ public class AddressServiceImpl extends ServiceImpl<AddressDAO, Address> impleme
         return baseMapper.selectById(addressId);
     }
 
-    public Object getAddressVo(Integer userId){
+    public Object getAddressVo(Integer userId) {
         log.info("根据用户id获取地址列表");
         List<AddressVo> addressVoList = null;
         addressVoList = baseMapper.getAddressVo(userId);
         return ResultUtil.success(addressVoList);
     }
 
-    public Object insertAddress(Integer userId,AddressVo addressVo){
+    public Object insertAddress(Integer userId, AddressVo addressVo) {
         log.info("根据用户id新增地址");
-        Address address=new Address();
+        Address address = new Address();
         address.setUserId(userId);
         address.setAddress(addressVo.getAddress());
         address.setContact(addressVo.getContact());
         address.setPhoneNumber(addressVo.getPhoneNumber());
         baseMapper.insert(address);
-        return  ResultUtil.success(address);
+        return ResultUtil.success(address);
     }
 
 

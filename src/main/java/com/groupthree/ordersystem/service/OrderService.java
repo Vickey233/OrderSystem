@@ -6,7 +6,7 @@ import com.groupthree.ordersystem.vo.TempOrderVo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LR
@@ -16,12 +16,14 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 主键
+     *
      * @return
      */
     public Long getId();
 
     /**
      * 查询订单  分页
+     *
      * @param pageNo
      * @param pageSize
      * @return
@@ -30,6 +32,7 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 获取订单状态
+     *
      * @param orderId
      * @return
      */
@@ -37,6 +40,7 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 取消订单
+     *
      * @param orderId
      * @return
      */
@@ -44,6 +48,7 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 按时间查询订单  分页
+     *
      * @param begintime
      * @param overtime
      * @return

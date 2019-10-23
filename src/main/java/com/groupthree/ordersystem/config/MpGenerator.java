@@ -24,7 +24,7 @@ public class MpGenerator {
      * </p>
      */
     public static void main(String[] args) {
-        String[] tables=new String[]{"user","order","address","admin","commodity","order_commodity"};
+        String[] tables = new String[]{"user", "order", "address", "admin", "commodity", "order_commodity"};
         generaterCode(tables);
     }
 

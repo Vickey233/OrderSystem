@@ -1,7 +1,9 @@
 package com.groupthree.ordersystem.entity;
 
 import java.util.Date;
+
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 
@@ -14,7 +16,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LR

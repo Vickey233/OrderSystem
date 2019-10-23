@@ -11,13 +11,12 @@ import java.io.IOException;
 public class FileUtils {
 
     /**
-     *
-     * @param file 文件
-     * @param path 文件存放路径
+     * @param file     文件
+     * @param path     文件存放路径
      * @param fileName 源文件名
      * @return
      */
-    public static boolean upload(MultipartFile file, String path, String fileName){
+    public static boolean upload(MultipartFile file, String path, String fileName) {
 
 
         // 生成新的文件名
@@ -29,7 +28,7 @@ public class FileUtils {
         File dest = new File(realPath);
 
         //判断文件父目录是否存在
-        if(!dest.getParentFile().exists()){
+        if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
 

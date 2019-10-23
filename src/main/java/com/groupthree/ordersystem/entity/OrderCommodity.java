@@ -1,12 +1,13 @@
 package com.groupthree.ordersystem.entity;
 
 import java.util.Date;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
 
+import java.io.Serializable;
 
 
 import com.baomidou.mybatisplus.annotations.Version;
@@ -19,7 +20,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LR
@@ -32,7 +33,7 @@ public class OrderCommodity extends Model<OrderCommodity> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "ordercomId",type = IdType.AUTO)
+    @TableId(value = "ordercomId", type = IdType.AUTO)
     private Integer ordercomId;
 
     private Integer orderId;

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LR
@@ -20,6 +20,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 主键
+     *
      * @return
      */
     public Long getId();
@@ -28,6 +29,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 查询用户  分页
+     *
      * @param pageNo
      * @param pageSize
      * @return
@@ -36,6 +38,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 查询用户  登录
+     *
      * @param phoneNumber
      * @return
      */
@@ -51,19 +54,38 @@ public interface UserService extends IService<User> {
 
     /**
      * 新增用户
+     *
      * @param user
      */
     public Object addUser(User user) throws Exception;
 
     /**
      * 更新用户
+     *
      * @param user
      */
     public void updateUser(User user);
 
     /**
      * 删除用户
+     *
      * @param userId
      */
     public void deleteUser(Integer userId);
+
+    /**
+     * 扣钱
+     *
+     * @param userId
+     * @param sum
+     */
+    public boolean deductMoney(Integer userId, Double sum);
+
+    /**
+     * 还钱/冲钱
+     *
+     * @param userId
+     * @param sum
+     */
+    public Object moneyBack(Integer userId, Double sum);
 }

@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author LR
@@ -36,14 +36,13 @@ public class AdminController {
 
     @WebLog(description = "获取用户列表")
     @RequestMapping("/userList")
-    public Object userList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize)
-    {
-        return userService.getUserPage(pageNo,pageSize);
+    public Object userList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
+        return userService.getUserPage(pageNo, pageSize);
     }
 
     @WebLog(description = "管理员登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(@RequestBody Map<String, Object> map) throws Exception{
-        return adminService.login(request, map.get("phoneNumber").toString(),map.get("password").toString());
+    public Object login(@RequestBody Map<String, Object> map) throws Exception {
+        return adminService.login(request, map.get("phoneNumber").toString(), map.get("password").toString());
     }
 }

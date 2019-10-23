@@ -1,7 +1,9 @@
 package com.groupthree.ordersystem.entity;
 
 import java.util.Date;
+
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 
@@ -17,7 +19,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LR
@@ -29,7 +31,7 @@ public class Commodity extends Model<Commodity> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "commodityId",type = IdType.AUTO)
+    @TableId(value = "commodityId", type = IdType.AUTO)
     private Integer commodityId;
 
     private String commodityName;

@@ -26,17 +26,17 @@ public class UserServiceTest {
 
     @Test
     public void getUserPage() {
-        userService.getUserPage(1,5);
+        userService.getUserPage(1, 5);
     }
 
     @Test
     public void login() {
-        userService.login(request,"","");
+        userService.login(request, "", "");
     }
 
     @Test
     public void addUser() throws Exception {
-        User user=new User();
+        User user = new User();
         user.setRealName("测试");
         user.setPassWord("123");
         user.setPhoneNumber("13546987542");
@@ -49,7 +49,7 @@ public class UserServiceTest {
 
     @Test
     public void deleteUser() {
-        User user =userDAO.findUserByPhoneNumber("13546987542");
+        User user = userDAO.findUserByPhoneNumber("13546987542");
         userService.deleteUser(user.getUserId());
     }
 }
