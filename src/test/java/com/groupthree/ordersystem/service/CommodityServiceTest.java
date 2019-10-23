@@ -41,7 +41,7 @@ public class CommodityServiceTest {
     @Test
     public void updateMsg() {
         EditCommodityVo editCommodityVo = new EditCommodityVo();
-        Commodity commodity = commodityDAO.getBycommodityName("测试菜");
+        Commodity commodity = commodityDAO.getByCommodityName("测试菜");
         editCommodityVo.setCommodityId(commodity.getCommodityId());
         editCommodityVo.setCommodityName(commodity.getCommodityName());
         editCommodityVo.setCommodityDesc("不好吃");
@@ -51,13 +51,13 @@ public class CommodityServiceTest {
 
     @Test
     public void getCommdityMsg() {
-        Commodity commodity = commodityDAO.getBycommodityName("测试菜");
+        Commodity commodity = commodityDAO.getByCommodityName("测试菜");
         commodityService.getCommdityMsg(commodity.getCommodityId());
     }
 
     @Test
     public void delete() {
-        Commodity commodity = commodityDAO.getBycommodityName("测试菜");
+        Commodity commodity = commodityDAO.getByCommodityName("测试菜");
         commodityService.delete(commodity.getCommodityId());
     }
 }

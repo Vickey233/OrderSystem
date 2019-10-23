@@ -21,9 +21,9 @@
         select SEQ_PARTY_ACCOUNT_ID.NEXTVAL from dual
     </select>
     <select id="getCommodityPage" resultType="com.groupthree.ordersystem.vo.CommodityVo">
-        select * from commodity
+         select * from commodity where commodityName like CONCAT('%',#{commodityName},'%')
     </select>
-    <insert id="insertOne">
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="commodityId">
         insert into commodity(commodityName,imagePath,price,commodityDesc) 
         values(#{commodityName},#{imagePath},#{price},#{commodityDesc})
     </insert>
@@ -44,8 +44,8 @@
     <select id="getShowCommodityList" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
     </select>
-    <select id="getBycommodityName" resultMap="BaseResultMap">
-        select commodityName from commodity where commodityName like '%#{commodityName}%'
+    <select id="getByCommodityName" resultMap="BaseResultMap">
+        select commodityName from commodity where commodityName=#{commodityName}
     </select>
     <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
         select commodityName,commodityDesc,price

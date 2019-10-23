@@ -38,6 +38,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
         log.info("获取商品列表");
         List<CommodityVo> commodityVoList = null;
         Page<CommodityVo> page = new Page<>(pageNo, pageSize);
+        System.out.println(commodityName);
         commodityVoList = baseMapper.getCommodityPage(commodityName, page);
         page.setRecords(commodityVoList);
         return ResultUtil.success(page);
@@ -45,9 +46,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
 
     public Object insertOne(String commodityName, String commodityDesc, String imagePath, Double price) {
         log.info("插入商品");
-        baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
-        Commodity commodity=baseMapper.getBycommodityName(commodityName);
-        return ResultUtil.success(commodity.getCommodityId());
+        Commodity commodity=baseMapper.getByCommodityName(commodityName);
+        if(commodity==null)
+        {
+            baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
+            commodity=baseMapper.getByCommodityName(commodityName);
+            return ResultUtil.success(commodity.getCommodityId());
+        }
+        return ResultUtil.error("商品名重复");
     }
 
     public Object getCommdityMsg(Integer commodityId){

@@ -22,7 +22,7 @@ public interface CommodityDAO extends BaseMapper<Commodity> {
 
     public Long getId();
 
-    public Commodity getBycommodityName(String commodityName);
+    public Commodity getByCommodityName(String commodityName);
 
     public List<CommodityVo> getCommodityPage(String commodityName, Page<CommodityVo> page);
 

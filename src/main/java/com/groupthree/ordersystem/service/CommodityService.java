@@ -6,7 +6,7 @@ import com.groupthree.ordersystem.vo.EditCommodityVo;
 
 /**
  * <p>
- * 服务类
+ *  服务类
  * </p>
  *
  * @author LR
@@ -16,7 +16,6 @@ public interface CommodityService extends IService<Commodity> {
 
     /**
      * 主键
-     *
      * @return
      */
     public Long getId();
@@ -25,7 +24,6 @@ public interface CommodityService extends IService<Commodity> {
 
     /**
      * 查询商品
-     *
      * @param pageNo
      * @param pageSize
      * @return
@@ -34,7 +32,6 @@ public interface CommodityService extends IService<Commodity> {
 
     /**
      * 新增商品
-     *
      * @param commodityName
      * @param commodityDesc
      * @param imagePath
@@ -45,7 +42,6 @@ public interface CommodityService extends IService<Commodity> {
 
     /**
      * 修改商品
-     *
      * @param editCommodityVo
      * @return
      */
