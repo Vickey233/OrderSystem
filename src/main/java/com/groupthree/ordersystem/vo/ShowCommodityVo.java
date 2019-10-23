@@ -9,7 +9,7 @@ public class ShowCommodityVo {
 
     private String commodityDesc;
 
-    private Integer num;
+//    private Integer num;
 
     private Double price;
 }
