@@ -43,6 +43,6 @@ public class AdminController {
     @WebLog(description = "管理员登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(@RequestBody Map<String, Object> map) throws Exception {
-        return adminService.login(request, map.get("phoneNumber").toString(), map.get("password").toString());
+        return adminService.login(request, map.get("phoneNumber").toString(), map.get("passWord").toString());
     }
 }

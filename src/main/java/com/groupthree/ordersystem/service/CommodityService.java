@@ -2,6 +2,7 @@ package com.groupthree.ordersystem.service;
 
 import com.groupthree.ordersystem.entity.Commodity;
 import com.baomidou.mybatisplus.service.IService;
+import com.groupthree.ordersystem.vo.CommodityVo;
 import com.groupthree.ordersystem.vo.EditCommodityVo;
 
 /**
@@ -32,13 +33,10 @@ public interface CommodityService extends IService<Commodity> {
 
     /**
      * 新增商品
-     * @param commodityName
-     * @param commodityDesc
-     * @param imagePath
-     * @param price
+     * @param commodityVo
      * @return
      */
-    public Object insertOne(String commodityName, String commodityDesc, String imagePath, Double price);
+    public Object insertOne(CommodityVo commodityVo);
 
     /**
      * 修改商品

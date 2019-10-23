@@ -44,13 +44,20 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
         return ResultUtil.success(page);
     }
 
-    public Object insertOne(String commodityName, String commodityDesc, String imagePath, Double price) {
-        log.info("插入商品");
-        Commodity commodity=baseMapper.getByCommodityName(commodityName);
+    public Object insertOne(CommodityVo commodityVo) {
+        log.info("判断商品名是否存在商品");
+        Commodity commodity=baseMapper.getByCommodityName(commodityVo.getCommodityName());
         if(commodity==null)
         {
-            baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
-            commodity=baseMapper.getByCommodityName(commodityName);
+//            baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
+            commodity=new Commodity();
+            commodity.setCommodityName(commodityVo.getCommodityName());
+            commodity.setCommodityDesc(commodityVo.getCommodityName());
+            commodity.setImagePath(commodityVo.getImagePath());
+            commodity.setPrice(commodityVo.getPrice());
+            log.info("插入商品");
+            baseMapper.insert(commodity);
+//            commodity=baseMapper.getByCommodityName(commodityName);
             return ResultUtil.success(commodity.getCommodityId());
         }
         return ResultUtil.error("商品名重复");
@@ -63,11 +70,17 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
 
     public Object updateMsg(EditCommodityVo editCommodityVo) {
         log.info("更新商品信息");
-        baseMapper.updateByCommodityId(editCommodityVo.getCommodityId(),
-                editCommodityVo.getCommodityName(),
-                editCommodityVo.getCommodityDesc(),
-                editCommodityVo.getImagePath(),
-                editCommodityVo.getPrice());
+//        baseMapper.updateByCommodityId(editCommodityVo.getCommodityId(),
+//                editCommodityVo.getCommodityName(),
+//                editCommodityVo.getCommodityDesc(),
+//                editCommodityVo.getImagePath(),
+//                editCommodityVo.getPrice());
+        Commodity commodity=this.getCommodityById(editCommodityVo.getCommodityId());
+        commodity.setCommodityName(editCommodityVo.getCommodityName());
+        commodity.setCommodityDesc(editCommodityVo.getCommodityDesc());
+        commodity.setImagePath(editCommodityVo.getImagePath());
+        commodity.setPrice(editCommodityVo.getPrice());
+        baseMapper.updateById(commodity);
         return ResultUtil.success(editCommodityVo.getCommodityId());
     }
 

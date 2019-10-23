@@ -36,7 +36,7 @@ public class CommodityController {
     @WebLog(description = "新增商品")
     @RequestMapping("/addcommodity")
     public Object addcommodity(@RequestBody CommodityVo commodityVo) {
-        return commodityService.insertOne(commodityVo.getCommodityName(), commodityVo.getCommodityDesc(), commodityVo.getImagePath(), commodityVo.getPrice());
+        return commodityService.insertOne(commodityVo);
     }
 
     @WebLog(description = "获取商品详细信息")

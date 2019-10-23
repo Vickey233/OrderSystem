@@ -36,7 +36,7 @@ public class OrderCommodity extends Model<OrderCommodity> {
     @TableId(value = "ordercomId", type = IdType.AUTO)
     private Integer ordercomId;
 
-    private Integer orderId;
+    private String orderId;
 
     private Integer commodityId;
 

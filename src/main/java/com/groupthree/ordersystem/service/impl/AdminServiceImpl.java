@@ -36,19 +36,19 @@ public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements Ad
         return baseMapper.selectById(adminId);
     }
 
-    public Object login(HttpServletRequest request, String phoneNumber, String password) throws Exception {
+    public Object login(HttpServletRequest request, String phoneNumber, String passWord) throws Exception {
         log.info("管理员登录");
         Admin admin=baseMapper.findAdminByPhoneNumber(phoneNumber);
 //        String prepassword=password;
 //        password= MD5Util.md5(password,password);
         HttpSession session=request.getSession();
-        if(admin!=null)
+        if(admin != null)
         {
-            if(MD5Util.verify(password,password,admin.getPassWord()))
+            if(MD5Util.verify(passWord,passWord,admin.getPassWord()))
             {
                 log.info("向session中插入Admin属性");
-                session.setAttribute("Admin",admin);
-                return ResultUtil.successTip("登录成功");
+                session.setAttribute("Admin", admin);
+                return ResultUtil.success("登录成功!", admin);
             }
             else{
                 return ResultUtil.error("密码错误");

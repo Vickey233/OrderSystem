@@ -3,6 +3,7 @@ package com.groupthree.ordersystem.service;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.groupthree.ordersystem.dao.CommodityDAO;
 import com.groupthree.ordersystem.entity.Commodity;
+import com.groupthree.ordersystem.vo.CommodityVo;
 import com.groupthree.ordersystem.vo.EditCommodityVo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,7 +36,12 @@ public class CommodityServiceTest {
 
     @Test
     public void insertOne() {
-        commodityService.insertOne("测试菜", "好吃", "", 12.5);
+        CommodityVo commodityVo=new CommodityVo();
+        commodityVo.setCommodityName("测试菜");
+        commodityVo.setCommodityDesc("好吃");
+        commodityVo.setImagePath("");
+        commodityVo.setPrice(12.5);
+        commodityService.insertOne(commodityVo);
     }
 
     @Test

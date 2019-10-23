@@ -30,5 +30,5 @@ public interface AdminService extends IService<Admin> {
      * @param phoneNumber
      * @return
      */
-    public Object login(HttpServletRequest request, String phoneNumber, String password) throws Exception;
+    public Object login(HttpServletRequest request, String phoneNumber, String passWord) throws Exception;
 }

@@ -3,6 +3,7 @@ package com.groupthree.ordersystem.dao;
 import com.groupthree.ordersystem.entity.Address;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.groupthree.ordersystem.vo.AddressVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,6 +24,6 @@ public interface AddressDAO extends BaseMapper<Address> {
      */
     public Long getId();
 
-    public List<AddressVo> getAddressVo(Integer userId);
+    public List<AddressVo> getAddressVo(@Param("userId") Integer userId);
 
 }

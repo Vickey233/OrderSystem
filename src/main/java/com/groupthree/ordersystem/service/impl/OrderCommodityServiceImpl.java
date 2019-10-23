@@ -35,7 +35,12 @@ public class OrderCommodityServiceImpl extends ServiceImpl<OrderCommodityDAO, Or
         log.info("向订单中插入菜品");
         for (int i=0;i<commodityList.length;i++)
         {
-            baseMapper.insertCommodity(orderId,commodityList[i],commodityCount[i]);
+//            baseMapper.insertCommodity(orderId,commodityList[i],commodityCount[i]);
+            OrderCommodity orderCommodity=new OrderCommodity();
+            orderCommodity.setOrderId(orderId);
+            orderCommodity.setCommodityId(commodityList[i]);
+            orderCommodity.setCount(commodityCount[i]);
+            baseMapper.insert(orderCommodity);
         }
         return ResultUtil.successTip("成功向订单中插入菜品");
     }
