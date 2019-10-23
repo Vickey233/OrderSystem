@@ -19,5 +19,5 @@ public interface OrderCommodityDAO extends BaseMapper<OrderCommodity> {
 
     public List<OrderComVo> getOrderComVo(String orderId);
 
-    public Object insertCommodity(String orderId, Integer commodityId);
+    public Object insertCommodity(String orderId, Integer commodityId,Integer count);
 }
