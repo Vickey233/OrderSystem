@@ -24,6 +24,7 @@ public class OrderCommodityServiceTest {
     @Test
     public void insertCommodityList() {
         Integer[] commodityList = {1, 2, 3};
-        orderCommodityService.insertCommodityList("", commodityList);
+        int[] commodityCount = {1, 2, 3};
+        orderCommodityService.insertCommodityList("", commodityList,commodityCount);
     }
 }
