@@ -96,7 +96,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
                 order.setSum(tempOrderVo.getSum());
                 baseMapper.insert(order);
                 log.info("订单商品表插入商品id");
-                commodityService.insertCommodityList(order.getOrderId(), tempOrderVo.getCommodityList());
+                commodityService.insertCommodityList(order.getOrderId(), tempOrderVo.getCommodityList() ,tempOrderVo.getCommodityCount());
                 return ResultUtil.success("下单成功", user.getMoney());
             }
             return ResultUtil.error("余额不足，下单失败！");

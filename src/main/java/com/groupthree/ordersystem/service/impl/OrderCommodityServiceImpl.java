@@ -31,11 +31,11 @@ public class OrderCommodityServiceImpl extends ServiceImpl<OrderCommodityDAO, Or
         return ResultUtil.success(commodityVoList);
     }
 
-    public Object insertCommodityList(String orderId,Integer[] commodityList){
+    public Object insertCommodityList(String orderId,Integer[] commodityList,int[] commodityCount){
         log.info("向订单中插入菜品");
         for (int i=0;i<commodityList.length;i++)
         {
-            baseMapper.insertCommodity(orderId,commodityList[i]);
+            baseMapper.insertCommodity(orderId,commodityList[i],commodityCount[i]);
         }
         return ResultUtil.successTip("成功向订单中插入菜品");
     }

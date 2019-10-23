@@ -26,5 +26,5 @@ public interface OrderCommodityService extends IService<OrderCommodity> {
      *
      * @return
      */
-    public Object insertCommodityList(String orderId, Integer[] commodityList);
+    public Object insertCommodityList(String orderId, Integer[] commodityList,int[] commodityCount);
 }

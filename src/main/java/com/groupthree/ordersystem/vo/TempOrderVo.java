@@ -14,4 +14,6 @@ public class TempOrderVo {
 
     private Integer[] commodityList;
 
+    private int[] commodityCount;
+
 }
