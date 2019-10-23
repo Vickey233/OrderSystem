@@ -24,10 +24,25 @@
         select * from commodity
     </select>
     <insert id="insertOne">
-
+        insert into commodity(commodityName,imagePath,price,commodityDesc) 
+        values(#{commodityName},#{imagePath},#{price},#{commodityDesc})
     </insert>
     <update id="updateByCommodityId">
-
+        update commodity 
+        <set> 
+             <if test ="commodityId != null and commodityId != ' '">
+                commodityId=#{commodityId},
+             </if>
+             <if test ="commodityName != null and commodityName != ' '">
+                commodityName=#{commodityName},
+             </if>
+             <if test ="imagePath != null and imagePath != ' '">
+                imagePath=#{imagePath},
+             </if> 
+             <if test ="price != null and price != ' '">
+                 price=#{price}
+             </if>
+         </set>
     </update>
     <select id="getShowCommodityList" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
