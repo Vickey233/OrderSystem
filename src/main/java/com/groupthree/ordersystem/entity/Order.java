@@ -27,9 +27,11 @@ public class Order extends Model<Order> {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "orderId")
-    private Integer orderId;
+    private String orderId;
 
     private Integer userId;
+
+    private Integer addressId;
 
     private String statue;
 

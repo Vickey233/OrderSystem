@@ -19,5 +19,8 @@
     <select id="getOrderComVo" resultType="com.groupthree.ordersystem.vo.OrderComVo">
 
     </select>
+    <insert id="insertCommodity">
+
+    </insert>
 
 </mapper>

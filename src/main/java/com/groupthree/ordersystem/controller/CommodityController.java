@@ -5,6 +5,7 @@ import com.groupthree.ordersystem.aop.WebLog;
 import com.groupthree.ordersystem.service.CommodityService;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.CommodityVo;
+import com.groupthree.ordersystem.vo.EditCommodityVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,19 @@ public class CommodityController {
     public Object commodityMsg(@RequestParam("commodityId") Integer commodityId)
     {
         return commodityService.getCommdityMsg(commodityId);
+    }
+
+    @WebLog(description = "删除商品")
+    @RequestMapping("/updateCommodity")
+    public Object updateCommodity(@RequestBody EditCommodityVo editCommodityVo)
+    {
+        return commodityService.updateMsg(editCommodityVo);
+    }
+
+    @WebLog(description = "删除商品")
+    @RequestMapping("/deleteCommodity")
+    public Object deleteCommodity(@RequestParam("commodityId") Integer commodityId)
+    {
+        return commodityService.delete(commodityId);
     }
 }

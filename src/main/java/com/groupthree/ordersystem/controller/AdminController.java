@@ -2,6 +2,7 @@ package com.groupthree.ordersystem.controller;
 
 
 import com.groupthree.ordersystem.aop.WebLog;
+import com.groupthree.ordersystem.service.AdminService;
 import com.groupthree.ordersystem.service.UserService;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
+    private AdminService adminService;
+
+    @Autowired
     private HttpServletRequest request;
 
     @WebLog(description = "获取用户列表")
@@ -40,6 +44,6 @@ public class AdminController {
     @WebLog(description = "管理员登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(@RequestBody Map<String, Object> map) throws Exception{
-        return userService.login(request, map.get("phoneNumber").toString(),map.get("password").toString());
+        return adminService.login(request, map.get("phoneNumber").toString(),map.get("password").toString());
     }
 }

@@ -19,4 +19,10 @@ public interface OrderCommodityService extends IService<OrderCommodity> {
      * @return
      */
     public Object getOrderComVo(Integer orderId);
+
+    /**
+     * 插入商品列表
+     * @return
+     */
+    public Object insertCommodityList(String orderId,Integer[] commodityList);
 }

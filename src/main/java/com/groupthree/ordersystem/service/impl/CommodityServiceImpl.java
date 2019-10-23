@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.CommodityVo;
 import com.groupthree.ordersystem.vo.EditCommodityVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
  * @since 2019-10-18
  */
 @Service
+@Slf4j
 public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> implements CommodityService {
 
     public Long getId() {
@@ -32,6 +34,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
     }
 
     public Object getCommodityPage(String commodityName, Integer pageNo, Integer pageSize) {
+        log.info("获取商品列表");
         List<CommodityVo> commodityVoList = null;
         Page<CommodityVo> page = new Page<>(pageNo, pageSize);
         commodityVoList = baseMapper.getCommodityPage(commodityName, page);
@@ -40,16 +43,19 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
     }
 
     public Object insertOne(String commodityName, String commodityDesc, String imagePath, Double price) {
+        log.info("插入商品");
         baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
         Commodity commodity=baseMapper.getBycommodityName(commodityName);
         return ResultUtil.success(commodity.getCommodityId());
     }
 
     public Object getCommdityMsg(Integer commodityId){
+        log.info("获取商品详细信息");
         return ResultUtil.success(baseMapper.getShowCommodityVo(commodityId));
     }
 
     public Object updateMsg(EditCommodityVo editCommodityVo) {
+        log.info("更新商品信息");
         baseMapper.updateByCommodityId(editCommodityVo.getCommodityId(),
                 editCommodityVo.getCommodityName(),
                 editCommodityVo.getCommodityDesc(),
@@ -59,6 +65,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
     }
 
     public Object delete(Integer commodityId){
+        log.info("删除商品");
         Commodity commodity=this.getCommodityById(commodityId);
         return ResultUtil.success(baseMapper.deleteById(commodity));
     }

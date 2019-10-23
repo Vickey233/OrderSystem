@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.groupthree.ordersystem.utils.MD5Util;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +24,19 @@ import java.util.List;
  * @since 2019-10-18
  */
 @Service
+@Slf4j
 public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements AdminService {
 
     public Long getId() {
         return baseMapper.getId();
     }
 
-    public Admin getAdminUserById(Integer adminId) {
+    public Admin getAdminById(Integer adminId) {
         return baseMapper.selectById(adminId);
     }
 
     public Object login(HttpServletRequest request, String phoneNumber, String password) throws Exception {
+        log.info("管理员登录");
         Admin admin=baseMapper.findAdminByPhoneNumber(phoneNumber);
 //        String prepassword=password;
 //        password= MD5Util.md5(password,password);
@@ -42,6 +45,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements Ad
         {
             if(MD5Util.verify(password,password,admin.getPassWord()))
             {
+                log.info("向session中插入Admin属性");
                 session.setAttribute("Admin",admin);
                 return ResultUtil.successTip("登录成功");
             }

@@ -3,7 +3,9 @@ package com.groupthree.ordersystem.controller;
 
 import com.groupthree.ordersystem.aop.WebLog;
 import com.groupthree.ordersystem.service.OrderService;
+import com.groupthree.ordersystem.vo.TempOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -39,4 +41,24 @@ public class OrderController {
         return orderService.getOrderPageByTime(begintime,overtime);
     }
 
+    @WebLog(description = "获取订单状态")
+    @RequestMapping("/orderList")
+    public Object orderList(@RequestParam("orderId") Integer orderId)
+    {
+        return orderService.getOrderStatue(orderId);
+    }
+
+    @WebLog(description = "取消订单")
+    @RequestMapping("/cancelList")
+    public Object cancelList(@RequestParam("orderId") Integer orderId)
+    {
+        return orderService.getOrderStatue(orderId);
+    }
+
+    @WebLog(description = "下单")
+    @RequestMapping("/doOrder")
+    public Object doOrder(@RequestBody TempOrderVo tempOrderVo)
+    {
+        return orderService.insertOrder(tempOrderVo);
+    }
 }

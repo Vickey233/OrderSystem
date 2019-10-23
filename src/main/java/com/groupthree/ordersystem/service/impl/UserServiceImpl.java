@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.groupthree.ordersystem.utils.MD5Util;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ import java.util.List;
  * @since 2019-10-18
  */
 @Service
+@Slf4j
 public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserService {
 
     public Long getId() {
@@ -35,6 +37,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     }
 
     public Object getUserPage(Integer pageNo, Integer pageSize) {
+        log.info("获取用户列表");
         List<UserVo> userVoList=null;
         Page<UserVo> page=new Page<>(pageNo,pageSize);
         userVoList=baseMapper.getUserPage(page);
@@ -43,6 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     }
 
     public Object login(HttpServletRequest request,String phoneNumber, String passWord) {
+        log.info("用户登录");
         User user=baseMapper.findUserByPhoneNumber(phoneNumber);
 //        String prepassword=password;
 //        password= MD5Util.md5(password,password);
@@ -51,6 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         {
             if(MD5Util.verify(passWord,passWord,user.getPassWord()))
             {
+                log.info("向session中插入User属性");
                 session.setAttribute("User",user);
                 return ResultUtil.success("登录成功！",user);
             }
@@ -62,6 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     }
 
     public Object addUser(User user) throws Exception {
+        log.info("注册/添加用户");
         User tmp=baseMapper.findUserByPhoneNumber(user.getPhoneNumber());
         if(tmp == null)
         {
@@ -73,10 +79,12 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     }
 
     public void updateUser(User user) {
+        log.info("更新用户基本信息");
 
     }
 
     public void deleteUser(Integer userId) {
+        log.info("删除用户");
         User user=this.getUserById(userId);
         baseMapper.deleteById(user);
 

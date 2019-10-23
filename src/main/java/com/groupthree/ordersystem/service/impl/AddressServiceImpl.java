@@ -6,6 +6,7 @@ import com.groupthree.ordersystem.service.AddressService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.AddressVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * @since 2019-10-18
  */
 @Service
+@Slf4j
 public class AddressServiceImpl extends ServiceImpl<AddressDAO, Address> implements AddressService {
 
     public Long getId() {
@@ -30,12 +32,14 @@ public class AddressServiceImpl extends ServiceImpl<AddressDAO, Address> impleme
     }
 
     public Object getAddressVo(Integer userId){
+        log.info("根据用户id获取地址列表");
         List<AddressVo> addressVoList = null;
         addressVoList = baseMapper.getAddressVo(userId);
         return ResultUtil.success(addressVoList);
     }
 
     public Object insertAddress(Integer userId,AddressVo addressVo){
+        log.info("根据用户id新增地址");
         Address address=new Address();
         address.setUserId(userId);
         address.setAddress(addressVo.getAddress());
