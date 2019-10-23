@@ -19,7 +19,9 @@
         select SEQ_PARTY_ACCOUNT_ID.NEXTVAL from dual
     </select>
     <select id="getAddressVo" resultType="com.groupthree.ordersystem.vo.AddressVo">
-
+        select addressId,address,contact,phoneNumber
+        from address
+        where userId=#{userId}
     </select>
 
 </mapper>
