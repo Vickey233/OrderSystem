@@ -19,5 +19,7 @@ public class CommodityVo {
     private String commodityDesc;
 
     private Date createDate;
+
+    private Date updateDate;
 }
 

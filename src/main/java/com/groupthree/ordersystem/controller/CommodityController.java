@@ -32,7 +32,6 @@ public class CommodityController {
         return commodityService.getCommodityPage(commodityName, pageNo, pageSize);
     }
 
-
     @WebLog(description = "新增商品")
     @RequestMapping(value = "/addcommodity", method = RequestMethod.PUT)
     public Object addcommodity(@RequestBody CommodityVo commodityVo) {

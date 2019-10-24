@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.groupthree.ordersystem.aop.WebLog;
+import com.groupthree.ordersystem.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,22 +70,36 @@ public class KaptchaController {
      * @param httpServletResponse
      * @return
      */
+//    @WebLog(description = "验证，验证码")
+//    @RequestMapping("/imgvrifyControllerDefaultKaptcha")
+//    public ModelAndView imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest,
+//                                                         HttpServletResponse httpServletResponse) {
+//        ModelAndView andView = new ModelAndView();
+//        String rightCode = (String) httpServletRequest.getSession().getAttribute("rightCode");
+//        String tryCode = httpServletRequest.getParameter("tryCode");
+//        System.out.println("rightCode:" + rightCode + " ———— tryCode:" + tryCode);
+//        if (!rightCode.equals(tryCode)) {
+//            andView.addObject("info", "错误的验证码");
+//            andView.setViewName("index");
+//        } else {
+//            andView.addObject("info", "登录成功");
+//            andView.setViewName("success");
+//        }
+//        return andView;
+//    }
+
     @WebLog(description = "验证，验证码")
     @RequestMapping("/imgvrifyControllerDefaultKaptcha")
-    public ModelAndView imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest,
+    public Object imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest,
                                                          HttpServletResponse httpServletResponse) {
-        ModelAndView andView = new ModelAndView();
+//        ModelAndView andView = new ModelAndView();
         String rightCode = (String) httpServletRequest.getSession().getAttribute("rightCode");
         String tryCode = httpServletRequest.getParameter("tryCode");
         System.out.println("rightCode:" + rightCode + " ———— tryCode:" + tryCode);
         if (!rightCode.equals(tryCode)) {
-            andView.addObject("info", "错误的验证码");
-            andView.setViewName("index");
+            return ResultUtil.error("错误的验证码");
         } else {
-            andView.addObject("info", "登录成功");
-            andView.setViewName("success");
+            return ResultUtil.successTip("登录成功");
         }
-        return andView;
     }
-
 }

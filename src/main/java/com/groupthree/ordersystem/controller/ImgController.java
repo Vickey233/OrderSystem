@@ -53,6 +53,7 @@ public class ImgController {
         if (FileUtils.upload(file, localPath, file.getOriginalFilename())) {
             // 上传成功，给出页面提示
             return ResultUtil.success("上传成功!", file.getOriginalFilename());
+//            return ResultUtil.success("上传成功!", resourceLoader.getResource("file:"+path+file.getOriginalFilename()).toString());
         }
         return ResultUtil.error("上传失败！");
     }
