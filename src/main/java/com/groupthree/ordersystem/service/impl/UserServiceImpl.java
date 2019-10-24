@@ -90,6 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         log.info("支付订单要扣钱，看看够不够");
         User user = this.getUserById(userId);
         if (user.getMoney() - sum > 0) {
+            System.out.println(user.getMoney()+"   "+sum);
             user.setMoney(user.getMoney() - sum);
             baseMapper.updateById(user);
             return true;

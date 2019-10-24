@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 24/10/2019 00:11:20
+ Date: 24/10/2019 09:59:21
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `address`  (
   `phoneNumber` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`addressId`) USING BTREE,
   INDEX `userId`(`userId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of address
@@ -37,6 +37,7 @@ CREATE TABLE `address`  (
 INSERT INTO `address` VALUES (1, 1, '福州大学生活一区', '张三', '13386952503');
 INSERT INTO `address` VALUES (2, 1, '福建师范大学旗山校区桂苑', '黄浩', '18654326666');
 INSERT INTO `address` VALUES (3, 2, '中国', '李四', '13354268371');
+INSERT INTO `address` VALUES (4, 2, '中国', '李四', '13354268371');
 
 -- ----------------------------
 -- Table structure for admin
@@ -50,7 +51,7 @@ CREATE TABLE `admin`  (
   `createDate` datetime(0) NULL DEFAULT NULL,
   `updateDate` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`adminId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin
@@ -92,7 +93,7 @@ INSERT INTO `commodity` VALUES (13, 'ceshi2', NULL, 22.00, 'ceshi2', '2019-10-23
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`  (
-  `orderId` int(200) NOT NULL,
+  `orderId` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `addressId` int(200) NULL DEFAULT NULL,
   `userId` int(200) NULL DEFAULT NULL,
   `statue` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -106,9 +107,12 @@ CREATE TABLE `order`  (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (1, NULL, 1, '已取消', 32.30, '2019-10-21 19:54:13', '2019-10-21 19:54:15');
-INSERT INTO `order` VALUES (2, NULL, 1, '配送中', 22.00, '2019-10-21 19:53:50', '2019-10-21 19:53:53');
-INSERT INTO `order` VALUES (3, NULL, 1, '已完成', 50.40, '2019-10-21 19:53:24', '2019-10-21 19:53:27');
+INSERT INTO `order` VALUES ('1', NULL, 1, '已取消', 32.30, '2019-10-21 19:54:13', '2019-10-21 19:54:15');
+INSERT INTO `order` VALUES ('1571850014', 1, 1, '已下单', 301.00, '2019-10-24 01:00:14', '2019-10-24 01:00:14');
+INSERT INTO `order` VALUES ('1571850121000977', 1, 1, '已下单', 301.00, '2019-10-24 01:02:01', '2019-10-24 01:02:01');
+INSERT INTO `order` VALUES ('2', NULL, 1, '配送中', 22.00, '2019-10-21 19:53:50', '2019-10-21 19:53:53');
+INSERT INTO `order` VALUES ('201910240115710345', 1, 1, '已取消', 301.00, '2019-10-24 01:15:10', '2019-10-24 01:19:29');
+INSERT INTO `order` VALUES ('3', NULL, 1, '已完成', 50.40, '2019-10-21 19:53:24', '2019-10-21 19:53:27');
 
 -- ----------------------------
 -- Table structure for order_commodity
@@ -116,7 +120,7 @@ INSERT INTO `order` VALUES (3, NULL, 1, '已完成', 50.40, '2019-10-21 19:53:24
 DROP TABLE IF EXISTS `order_commodity`;
 CREATE TABLE `order_commodity`  (
   `ordercomId` int(200) NOT NULL AUTO_INCREMENT,
-  `orderId` int(200) NULL DEFAULT NULL,
+  `orderId` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `commodityId` int(200) NULL DEFAULT NULL,
   `count` int(10) NULL DEFAULT NULL,
   `createDate` datetime(0) NULL DEFAULT NULL,
@@ -124,17 +128,25 @@ CREATE TABLE `order_commodity`  (
   PRIMARY KEY (`ordercomId`) USING BTREE,
   INDEX `orderId`(`orderId`) USING BTREE,
   INDEX `commodityId`(`commodityId`) USING BTREE,
-  CONSTRAINT `commodityId` FOREIGN KEY (`commodityId`) REFERENCES `commodity` (`commodityId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `orderId` FOREIGN KEY (`orderId`) REFERENCES `order` (`orderId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `commodityId` FOREIGN KEY (`commodityId`) REFERENCES `commodity` (`commodityId`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_commodity
 -- ----------------------------
-INSERT INTO `order_commodity` VALUES (1, 1, 2, 1, '2019-10-21 19:54:13', '2019-10-21 19:54:13');
-INSERT INTO `order_commodity` VALUES (2, 1, 5, 1, '2019-10-21 19:53:50', '2019-10-21 19:53:50');
-INSERT INTO `order_commodity` VALUES (3, 2, 1, 2, '2019-10-21 20:15:20', '2019-10-21 20:15:23');
-INSERT INTO `order_commodity` VALUES (4, 3, 3, 4, '2019-10-21 19:53:24', '2019-10-21 19:53:24');
+INSERT INTO `order_commodity` VALUES (1, '1', 2, 1, '2019-10-21 19:54:13', '2019-10-21 19:54:13');
+INSERT INTO `order_commodity` VALUES (2, '1', 5, 1, '2019-10-21 19:53:50', '2019-10-21 19:53:50');
+INSERT INTO `order_commodity` VALUES (3, '2', 1, 2, '2019-10-21 20:15:20', '2019-10-21 20:15:23');
+INSERT INTO `order_commodity` VALUES (4, '3', 3, 4, '2019-10-21 19:53:24', '2019-10-21 19:53:24');
+INSERT INTO `order_commodity` VALUES (5, '1571850121000977', 1, 1, '2019-10-24 01:02:02', '2019-10-24 01:02:02');
+INSERT INTO `order_commodity` VALUES (6, '1571850121000977', 2, 1, '2019-10-24 01:02:02', '2019-10-24 01:02:02');
+INSERT INTO `order_commodity` VALUES (7, '1571850121000977', 3, 1, '2019-10-24 01:02:02', '2019-10-24 01:02:02');
+INSERT INTO `order_commodity` VALUES (8, '201910240115710345', 1, 1, '2019-10-24 01:15:10', '2019-10-24 01:15:10');
+INSERT INTO `order_commodity` VALUES (9, '201910240115710345', 2, 1, '2019-10-24 01:15:10', '2019-10-24 01:15:10');
+INSERT INTO `order_commodity` VALUES (10, '201910240115710345', 3, 1, '2019-10-24 01:15:10', '2019-10-24 01:15:10');
+INSERT INTO `order_commodity` VALUES (11, '201910240115710345', 1, 1, '2019-10-24 01:16:40', '2019-10-24 01:16:40');
+INSERT INTO `order_commodity` VALUES (12, '201910240115710345', 2, 2, '2019-10-24 01:16:40', '2019-10-24 01:16:40');
+INSERT INTO `order_commodity` VALUES (13, '201910240115710345', 3, 3, '2019-10-24 01:16:40', '2019-10-24 01:16:40');
 
 -- ----------------------------
 -- Table structure for user
@@ -154,7 +166,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '13386952503', 'a123', '张三', 500.00, '2019-10-21 19:16:26', '2019-10-21 19:16:29');
+INSERT INTO `user` VALUES (1, '13386952503', '4297f44b13955235245b2497399d7a93', '张三', 8495.00, '2019-10-21 19:16:26', '2019-10-24 01:19:29');
 INSERT INTO `user` VALUES (2, '18950767589', 'a123', '李四', 300.00, '2019-10-21 19:15:25', '2019-10-21 19:15:25');
 INSERT INTO `user` VALUES (3, '18050961234', 'a123', '王五', 200.00, '2019-10-21 20:08:57', '2019-10-21 20:08:57');
 INSERT INTO `user` VALUES (9, '11123221131', '4297f44b13955235245b2497399d7a93', '小红', NULL, '2019-10-22 02:09:17', '2019-10-22 02:09:17');

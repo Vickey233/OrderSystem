@@ -35,7 +35,7 @@ public class AdminController {
     private HttpServletRequest request;
 
     @WebLog(description = "获取用户列表")
-    @RequestMapping("/userList")
+    @RequestMapping(value = "/userList", method = RequestMethod.GET)
     public Object userList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         return userService.getUserPage(pageNo, pageSize);
     }

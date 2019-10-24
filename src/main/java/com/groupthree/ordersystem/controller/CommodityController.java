@@ -34,25 +34,25 @@ public class CommodityController {
 
 
     @WebLog(description = "新增商品")
-    @RequestMapping("/addcommodity")
+    @RequestMapping(value = "/addcommodity", method = RequestMethod.PUT)
     public Object addcommodity(@RequestBody CommodityVo commodityVo) {
         return commodityService.insertOne(commodityVo);
     }
 
     @WebLog(description = "获取商品详细信息")
-    @RequestMapping("/commodityMsg")
+    @RequestMapping(value = "/commodityMsg", method = RequestMethod.GET)
     public Object commodityMsg(@RequestParam("commodityId") Integer commodityId) {
         return commodityService.getCommdityMsg(commodityId);
     }
 
-    @WebLog(description = "删除商品")
-    @RequestMapping("/updateCommodity")
+    @WebLog(description = "更新商品信息")
+    @RequestMapping(value = "/updateCommodity", method = RequestMethod.POST)
     public Object updateCommodity(@RequestBody EditCommodityVo editCommodityVo) {
         return commodityService.updateMsg(editCommodityVo);
     }
 
     @WebLog(description = "删除商品")
-    @RequestMapping("/deleteCommodity")
+    @RequestMapping(value = "/deleteCommodity", method = RequestMethod.DELETE)
     public Object deleteCommodity(@RequestParam("commodityId") Integer commodityId) {
         return commodityService.delete(commodityId);
     }

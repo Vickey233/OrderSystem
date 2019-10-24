@@ -27,12 +27,12 @@ public class OrderServiceTest {
 
     @Test
     public void getOrderStatue() {
-        orderService.getOrderStatue("");
+        orderService.getOrderStatue("201910240115710345");
     }
 
     @Test
     public void cancelOrder() {
-        orderService.cancelOrder("");
+        orderService.cancelOrder("201910240115710345");
     }
 
     @Test
@@ -45,10 +45,13 @@ public class OrderServiceTest {
         TempOrderVo tempOrderVo = new TempOrderVo();
         User user = userService.selectById(1);
         Integer[] commodityList = {1, 2, 3};
+        int[] commodityCount = {1, 2, 3};
         tempOrderVo.setUserId(user.getUserId());
         tempOrderVo.setAddressId(1);
+        tempOrderVo.setSum(52.1);
         tempOrderVo.setPassword(user.getPassWord());
         tempOrderVo.setCommodityList(commodityList);
+        tempOrderVo.setCommodityCount(commodityCount);
         orderService.insertOrder(tempOrderVo);
     }
 }

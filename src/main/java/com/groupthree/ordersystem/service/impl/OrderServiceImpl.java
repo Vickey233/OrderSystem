@@ -41,7 +41,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     @Autowired
     private OrderCommodityService commodityService;
 
-    @Override
+//    @Override
     public Long getId() {
         return null;
     }
@@ -74,11 +74,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     public Object cancelOrder(String orderId) {
         log.info("取消订单");
         Order order = this.selectById(orderId);
+        if(order.getStatue() == "已取消")
+            return ResultUtil.error("订单早就已经取消了");
         order.setStatue("已取消");
         baseMapper.updateById(order);
         log.info("还钱");
         userService.moneyBack(order.getUserId(), order.getSum());
-        return ResultUtil.successTip("下单取消！");
+        return ResultUtil.successTip("取消下单成功！");
     }
 
     public Object insertOrder(TempOrderVo tempOrderVo) {
@@ -95,6 +97,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
                 order.setStatue("已下单");
                 order.setSum(tempOrderVo.getSum());
                 baseMapper.insert(order);
+                System.out.println(order);
                 log.info("订单商品表插入商品id");
                 commodityService.insertCommodityList(order.getOrderId(), tempOrderVo.getCommodityList() ,tempOrderVo.getCommodityCount());
                 return ResultUtil.success("下单成功", user.getMoney());
@@ -105,25 +108,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     }
 
     /**
-     * 生成订单编号  时间戳+3位整数
+     * 生成订单编号  时间戳+2位整数
      *
      * @return
      */
     public String autoOrderId() {
 
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String str = format.format(date);
-        Date orderId = null;
-        Random rand = new Random();
-        //[900]：900个    100：从100
-        int x = rand.nextInt(900) + 100;
-        try {
-            orderId = format.parse(str);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return String.valueOf(orderId.getTime()) + x;
+        Random random = new Random();
+        SimpleDateFormat allTime = new SimpleDateFormat("YYYYMMddHHmmSS");
+        String subjectno = allTime.format(new Date()) + random.nextInt(99);
+        return subjectno + random.nextInt(10);
     }
-
 }

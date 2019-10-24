@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class OrderVO {
 
-    private  Integer orderId;
+    private  String orderId;
 
     private Integer userId;
 

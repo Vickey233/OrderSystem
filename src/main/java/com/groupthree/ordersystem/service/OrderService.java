@@ -19,7 +19,7 @@ public interface OrderService extends IService<Order> {
      *
      * @return
      */
-    public Long getId();
+//    public Long getId();
 
     /**
      * 查询订单  分页
@@ -56,4 +56,5 @@ public interface OrderService extends IService<Order> {
     public Object getOrderPageByTime(String begintime, String overtime);
 
     public Object insertOrder(TempOrderVo tempOrderVo);
+
 }

@@ -18,13 +18,13 @@ public class OrderCommodityServiceTest {
 
     @Test
     public void getOrderComVo() {
-        orderCommodityService.getOrderComVo(" dfsffer");
+        orderCommodityService.getOrderComVo("201910240115710345");
     }
 
     @Test
     public void insertCommodityList() {
         Integer[] commodityList = {1, 2, 3};
         int[] commodityCount = {1, 2, 3};
-        orderCommodityService.insertCommodityList("", commodityList,commodityCount);
+        orderCommodityService.insertCommodityList("201910240115710345", commodityList,commodityCount);
     }
 }
