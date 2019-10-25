@@ -35,18 +35,19 @@ public class OrderController {
     }
 
     @WebLog(description = "获取订单列表")
-    @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
+//    @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
     public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @RequestParam(value = "begintime",required = false) String begintime, @RequestParam(value = "overtime",required = false) String overtime) {
         return orderService.getOrderPageByTime(pageNo, pageSize, begintime, overtime);
     }
 
     @WebLog(description = "获取订单列表")
-//    @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
+    @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
     public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @DateTimeFormat(pattern = "yyyy-MM-dd") Date begintime, @DateTimeFormat(pattern = "yyyy-MM-dd") Date overtime) {
         SimpleDateFormat begin =new SimpleDateFormat("yyyy-MM-dd");
         String t_begin=begin.format(begintime);
         SimpleDateFormat over =new SimpleDateFormat("yyyy-MM-dd");
-        String t_over=over.format(begintime);
+        String t_over=over.format(overtime);
+        System.out.println(t_begin+"     "+t_over);
         return orderService.getOrderPageByTime(pageNo, pageSize, t_begin, t_over);
     }
 

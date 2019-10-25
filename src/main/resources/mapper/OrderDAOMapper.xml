@@ -21,7 +21,7 @@
         select * from `order`
     </select>
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
-        select a.orderId,b.userId,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
+        select a.orderId,b.userId,a.statue,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
         from `order` a,
             `user` b,
             address c

@@ -14,6 +14,8 @@ public class OrderVO {
 
     private String realName;
 
+    private String statue;
+
     private String phoneNumber;
 
     private String address;
