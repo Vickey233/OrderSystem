@@ -87,7 +87,10 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
     public Object delete(Integer commodityId){
         log.info("删除商品");
         Commodity commodity=this.getCommodityById(commodityId);
-        return ResultUtil.success(baseMapper.deleteById(commodity));
+//        return ResultUtil.success(baseMapper.deleteById(commodity));
+        commodity.setCstatue(0);
+        baseMapper.updateById(commodity);
+        return ResultUtil.successTip("删除商品成功！");
     }
 
 }

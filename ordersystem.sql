@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 24/10/2019 09:59:21
+ Date: 25/10/2019 10:29:51
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `address`  (
   `phoneNumber` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`addressId`) USING BTREE,
   INDEX `userId`(`userId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of address
@@ -71,22 +71,23 @@ CREATE TABLE `commodity`  (
   `commodityDesc` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `createDate` datetime(0) NULL DEFAULT NULL,
   `updateDate` datetime(0) NULL DEFAULT NULL,
+  `cstatue` int(2) NULL DEFAULT NULL,
   PRIMARY KEY (`commodityId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of commodity
 -- ----------------------------
-INSERT INTO `commodity` VALUES (1, '香辣蛋包饭', NULL, 11.00, NULL, '2019-10-21 19:44:13', '2019-10-21 19:44:17');
-INSERT INTO `commodity` VALUES (2, '黑椒牛肉饭', NULL, 16.50, NULL, '2019-10-21 19:43:30', '2019-10-21 19:43:34');
-INSERT INTO `commodity` VALUES (3, '芝士培根蛋包饭', NULL, 12.60, NULL, '2019-10-21 19:42:37', '2019-10-21 19:42:39');
-INSERT INTO `commodity` VALUES (4, '番茄肉酱意面', NULL, 13.50, NULL, '2019-10-21 19:40:53', '2019-10-21 19:40:56');
-INSERT INTO `commodity` VALUES (5, '菠萝虾焗饭', NULL, 15.80, NULL, '2019-10-21 19:40:22', '2019-10-21 19:40:27');
-INSERT INTO `commodity` VALUES (9, 'ceshi', NULL, 22.00, 'haochi', NULL, NULL);
-INSERT INTO `commodity` VALUES (10, 'ceshi1', NULL, 22.00, 'haochi', NULL, NULL);
-INSERT INTO `commodity` VALUES (11, 'ceshi11', NULL, 22.00, 'haochi', NULL, NULL);
-INSERT INTO `commodity` VALUES (12, NULL, NULL, NULL, NULL, '2019-10-23 23:53:12', '2019-10-23 23:53:12');
-INSERT INTO `commodity` VALUES (13, 'ceshi2', NULL, 22.00, 'ceshi2', '2019-10-23 23:54:30', '2019-10-23 23:54:30');
+INSERT INTO `commodity` VALUES (1, '香辣蛋包饭', NULL, 11.00, NULL, '2019-10-21 19:44:13', '2019-10-21 19:44:17', 0);
+INSERT INTO `commodity` VALUES (2, '黑椒牛肉饭', NULL, 16.50, NULL, '2019-10-21 19:43:30', '2019-10-21 19:43:34', 1);
+INSERT INTO `commodity` VALUES (3, '芝士培根蛋包饭', NULL, 12.60, NULL, '2019-10-21 19:42:37', '2019-10-21 19:42:39', 1);
+INSERT INTO `commodity` VALUES (4, '番茄肉酱意面', NULL, 13.50, NULL, '2019-10-21 19:40:53', '2019-10-21 19:40:56', 1);
+INSERT INTO `commodity` VALUES (5, '菠萝虾焗饭', NULL, 15.80, NULL, '2019-10-21 19:40:22', '2019-10-21 19:40:27', 1);
+INSERT INTO `commodity` VALUES (9, 'ceshi', NULL, 22.00, 'haochi', NULL, NULL, 1);
+INSERT INTO `commodity` VALUES (10, 'ceshi1', NULL, 22.00, 'haochi', NULL, NULL, 1);
+INSERT INTO `commodity` VALUES (11, 'ceshi11', NULL, 22.00, 'haochi', NULL, NULL, 1);
+INSERT INTO `commodity` VALUES (12, NULL, NULL, NULL, NULL, '2019-10-23 23:53:12', '2019-10-23 23:53:12', 1);
+INSERT INTO `commodity` VALUES (13, 'ceshi2', NULL, 22.00, 'ceshi2', '2019-10-23 23:54:30', '2019-10-23 23:54:30', 0);
 
 -- ----------------------------
 -- Table structure for order
@@ -129,7 +130,7 @@ CREATE TABLE `order_commodity`  (
   INDEX `orderId`(`orderId`) USING BTREE,
   INDEX `commodityId`(`commodityId`) USING BTREE,
   CONSTRAINT `commodityId` FOREIGN KEY (`commodityId`) REFERENCES `commodity` (`commodityId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_commodity
@@ -161,7 +162,7 @@ CREATE TABLE `user`  (
   `createDate` datetime(0) NULL DEFAULT NULL,
   `updateDate` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`userId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user

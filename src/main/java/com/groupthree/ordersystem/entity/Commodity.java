@@ -40,6 +40,8 @@ public class Commodity extends Model<Commodity> {
 
     private Double price;
 
+    private int cstatue;
+
     private String commodityDesc;
 
     @TableField(value = "createDate", fill = FieldFill.INSERT)

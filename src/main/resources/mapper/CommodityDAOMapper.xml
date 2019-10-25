@@ -4,13 +4,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.groupthree.ordersystem.entity.Commodity">
-        <id column="commodityId" property="commodityId" />
-        <result column="commodityName" property="commodityName" />
-        <result column="imagePath" property="imagePath" />
-        <result column="price" property="price" />
-        <result column="commodityDesc" property="commodityDesc" />
-        <result column="createDate" property="createDate" />
-        <result column="updateDate" property="updateDate" />
+        <id column="commodityId" property="commodityId"/>
+        <result column="commodityName" property="commodityName"/>
+        <result column="imagePath" property="imagePath"/>
+        <result column="price" property="price"/>
+        <result column="cstatue" property="cstatue"/>
+        <result column="commodityDesc" property="commodityDesc"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -21,35 +22,38 @@
         select SEQ_PARTY_ACCOUNT_ID.NEXTVAL from dual
     </select>
     <select id="getCommodityPage" resultType="com.groupthree.ordersystem.vo.CommodityVo">
-         select * from commodity where commodityName like CONCAT('%',#{commodityName},'%')
+        select * from commodity where cstatue=1
+        <if test="commodityName != null and commodityName != ' '">
+            and commodityName like CONCAT('%',#{commodityName},'%')
+        </if>
     </select>
     <insert id="insertOne" useGeneratedKeys="true" keyProperty="commodityId">
         insert into commodity(commodityName,imagePath,price,commodityDesc) 
         values(#{commodityName},#{imagePath},#{price},#{commodityDesc})
     </insert>
     <update id="updateByCommodityId">
-        update commodity 
+        update commodity
         set
-             <if test ="commodityName != null and commodityName != ' '">
-                commodityName=#{commodityName},
-             </if>
-             <if test ="imagePath != null and imagePath != ' '">
-                imagePath=#{imagePath},
-             </if> 
-             <if test ="price != null and price != ' '">
-                 price=#{price},
-             </if>
-         where commodityId=#{commodityId}
+        <if test="commodityName != null and commodityName != ' '">
+            commodityName=#{commodityName},
+        </if>
+        <if test="imagePath != null and imagePath != ' '">
+            imagePath=#{imagePath},
+        </if>
+        <if test="price != null and price != ' '">
+            price=#{price},
+        </if>
+        where commodityId=#{commodityId}
     </update>
     <select id="getShowCommodityList" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
 
     </select>
     <select id="getByCommodityName" resultMap="BaseResultMap">
-<!--        select * from commodity -->
-<!--        where         -->
-<!--        <if test ="commodityName != null and commodityName != ' '">-->
-<!--            commodityName like CONCAT('%',#{commodityName},'%')-->
-<!--        </if> -->
+        <!--        select * from commodity -->
+        <!--        where         -->
+        <!--        <if test ="commodityName != null and commodityName != ' '">-->
+        <!--            commodityName like CONCAT('%',#{commodityName},'%')-->
+        <!--        </if> -->
         select * from commodity where commodityName=#{commodityName}
     </select>
     <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
