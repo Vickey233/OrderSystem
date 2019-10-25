@@ -53,7 +53,7 @@ public interface OrderService extends IService<Order> {
      * @param overtime
      * @return
      */
-    public Object getOrderPageByTime(String begintime, String overtime);
+    public Object getOrderPageByTime(Integer pageNo, Integer pageSize,String begintime, String overtime);
 
     public Object insertOrder(TempOrderVo tempOrderVo);
 

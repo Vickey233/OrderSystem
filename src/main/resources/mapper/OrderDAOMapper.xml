@@ -20,19 +20,30 @@
     <select id="getOrderPage" resultType="com.groupthree.ordersystem.vo.OrderVO">
         select * from `order`
     </select>
+<!--    <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">-->
+<!--        select a.orderId,b.userId,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate-->
+<!--        from order a-->
+<!--             user b-->
+<!--             address c-->
+<!--        where a.userId=b.userId-->
+<!--          and b.addressId=c.addressId-->
+<!--        <if test ="begintime != null and begintime != ' '">-->
+<!--          and a.createDate=#{begintime}-->
+<!--        </if> -->
+<!--        <if test ="overtime != null and overtime != ' '">-->
+<!--          and a.updateDate=#{overtime}-->
+<!--        </if> -->
+<!--    </select>-->
+
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
-        select a.orderId,b.userId,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
-        from order a
-             user b
-             address c
-        where a.userId=b.userId
-          and b.addressId=c.addressId
+        select * from `order`
+        where 1=1
         <if test ="begintime != null and begintime != ' '">
-          and a.createDate=#{begintime}
-        </if> 
+            and a.createDate=#{begintime}
+        </if>
         <if test ="overtime != null and overtime != ' '">
-          and a.updateDate=#{overtime}
-        </if> 
+            and a.updateDate=#{overtime}
+        </if>
     </select>
 
 </mapper>

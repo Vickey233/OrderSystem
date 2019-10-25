@@ -41,7 +41,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     @Autowired
     private OrderCommodityService commodityService;
 
-//    @Override
+    //    @Override
     public Long getId() {
         return null;
     }
@@ -56,10 +56,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
         return ResultUtil.success(page);
     }
 
-    public Object getOrderPageByTime(String begintime, String overtime) {
+    public Object getOrderPageByTime(Integer pageNo, Integer pageSize, String begintime, String overtime) {
         log.info("根据时间获取订单列表，默认第一页，每页五条数据");
         List<OrderVO> orderVOList = null;
-        Page<OrderVO> page = new Page<>(1, 5);
+        Page<OrderVO> page = new Page<>(pageNo, pageSize);
         orderVOList = baseMapper.getOrderPageByTime(begintime, overtime);
         page.setRecords(orderVOList);
         return ResultUtil.success(page);
@@ -74,7 +74,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     public Object cancelOrder(String orderId) {
         log.info("取消订单");
         Order order = this.selectById(orderId);
-        if(order.getStatue() == "已取消")
+        if (order.getStatue() == "已取消")
             return ResultUtil.error("订单早就已经取消了");
         order.setStatue("已取消");
         baseMapper.updateById(order);
@@ -99,7 +99,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
                 baseMapper.insert(order);
                 System.out.println(order);
                 log.info("订单商品表插入商品id");
-                commodityService.insertCommodityList(order.getOrderId(), tempOrderVo.getCommodityList() ,tempOrderVo.getCommodityCount());
+                commodityService.insertCommodityList(order.getOrderId(), tempOrderVo.getCommodityList(), tempOrderVo.getCommodityCount());
                 return ResultUtil.success("下单成功", user.getMoney());
             }
             return ResultUtil.error("余额不足，下单失败！");

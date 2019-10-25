@@ -80,7 +80,12 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
 
     public void updateUser(User user) {
         log.info("更新用户基本信息");
-
+        User upuser=this.getUserById(user.getUserId());
+        upuser.setRealName(user.getRealName());
+        upuser.setPhoneNumber(user.getPhoneNumber());
+        upuser.setMoney(user.getMoney());
+        upuser.setPassWord(user.getPassWord());
+        baseMapper.updateById(upuser);
     }
 
     public void deleteUser(Integer userId) {

@@ -25,15 +25,15 @@ public class OrderController {
     private OrderService orderService;
 
     @WebLog(description = "获取订单列表")
-    @RequestMapping(value = "/orderList", method = RequestMethod.GET)
+//    @RequestMapping(value = "/orderList", method = RequestMethod.GET)
     public Object orderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
         return orderService.getOrderPage(pageNo, pageSize);
     }
 
     @WebLog(description = "获取订单列表")
     @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
-    public Object timeOrderList(@RequestParam("begintime") String begintime, @RequestParam("overtime") String overtime) {
-        return orderService.getOrderPageByTime(begintime, overtime);
+    public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @RequestParam(value = "begintime",required = false) String begintime, @RequestParam(value = "overtime",required = false) String overtime) {
+        return orderService.getOrderPageByTime(pageNo, pageSize, begintime, overtime);
     }
 
     @WebLog(description = "获取订单状态")

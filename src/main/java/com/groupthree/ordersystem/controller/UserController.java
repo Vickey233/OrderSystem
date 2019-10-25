@@ -53,4 +53,10 @@ public class UserController {
     public Object addMoney(@RequestParam("userId") Integer userId, @RequestParam("sum") Double sum) {
         return userService.moneyBack(userId, sum);
     }
+
+    @WebLog(description = "更新用户信息")
+    @RequestMapping(value = "/updateMsg", method = RequestMethod.POST)
+    public Object updateMsg(@RequestBody User user) {
+        return userService.updateById(user);
+    }
 }
