@@ -18,12 +18,11 @@
     </sql>
     <select id="getOrderComVo" resultType="com.groupthree.ordersystem.vo.OrderComVo">
         select b.commodityName,b.price,a.count,a.createDate
-        from order_commodity a
-             commodity b
+        from order_commodity a,commodity b
         where a.commodityId=b.commodityId
         <if test ="orderId != null and orderId != ' '">
-          and a.orderId=#{orderId}
-        </if> 
+            and a.orderId=#{orderId}
+        </if>
     </select>
     <insert id="insertCommodity">
         insert into order_commodity(orderId,commodityId,count) 

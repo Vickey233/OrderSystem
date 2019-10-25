@@ -49,12 +49,12 @@
 
     </select>
     <select id="getByCommodityName" resultMap="BaseResultMap">
-        <!--        select * from commodity -->
-        <!--        where         -->
-        <!--        <if test ="commodityName != null and commodityName != ' '">-->
-        <!--            commodityName like CONCAT('%',#{commodityName},'%')-->
-        <!--        </if> -->
-        select * from commodity where commodityName=#{commodityName}
+        select * from commodity
+        where
+        <if test ="commodityName != null and commodityName != ' '">
+            commodityName like CONCAT('%',#{commodityName},'%')
+        </if>
+<!--        select * from commodity where commodityName=#{commodityName}-->
     </select>
     <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
         select commodityName,commodityDesc,price
