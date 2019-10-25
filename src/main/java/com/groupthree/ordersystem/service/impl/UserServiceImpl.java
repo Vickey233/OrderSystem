@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -45,14 +47,16 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         return ResultUtil.success(page);
     }
 
-    public Object login(HttpServletRequest request, String phoneNumber, String passWord) {
+    public Object login(HttpServletRequest request, String phoneNumber, String passWord) throws UnsupportedEncodingException {
         log.info("用户登录");
         User user = baseMapper.findUserByPhoneNumber(phoneNumber);
-//        String prepassword=password;
-//        password= MD5Util.md5(password,password);
         HttpSession session = request.getSession();
         if (user != null) {
-            if (MD5Util.verify(passWord, passWord, user.getPassWord())) {
+            log.info("对密码进行解密");
+            Base64.Decoder decoder = Base64.getDecoder();
+            String depassword = new String(decoder.decode(passWord),"UTF-8");
+            System.out.println("解密后的密码是："+depassword);
+            if (MD5Util.verify(depassword, depassword, user.getPassWord())) {
                 log.info("向session中插入User属性");
                 session.setAttribute("User", user);
                 return ResultUtil.success("登录成功！", user);

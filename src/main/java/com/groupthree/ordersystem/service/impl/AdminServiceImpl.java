@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -39,12 +40,14 @@ public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements Ad
     public Object login(HttpServletRequest request, String phoneNumber, String passWord) throws Exception {
         log.info("管理员登录");
         Admin admin=baseMapper.findAdminByPhoneNumber(phoneNumber);
-//        String prepassword=password;
-//        password= MD5Util.md5(password,password);
         HttpSession session=request.getSession();
         if(admin != null)
         {
-            if(MD5Util.verify(passWord,passWord,admin.getPassWord()))
+            log.info("对密码进行解密");
+            Base64.Decoder decoder = Base64.getDecoder();
+            String depassword = new String(decoder.decode(passWord),"UTF-8");
+            System.out.println("解密后的密码是："+depassword);
+            if(MD5Util.verify(depassword,depassword,admin.getPassWord()))
             {
                 log.info("向session中插入Admin属性");
                 session.setAttribute("Admin", admin);

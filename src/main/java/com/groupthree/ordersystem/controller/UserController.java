@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class UserController {
 
     @WebLog(description = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(@RequestBody Map<String, Object> map) {
+    public Object login(@RequestBody Map<String, Object> map) throws UnsupportedEncodingException {
         return userService.login(request, map.get("phoneNumber").toString(), map.get("passWord").toString());
 
     }

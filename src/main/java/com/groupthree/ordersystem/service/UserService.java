@@ -7,6 +7,7 @@ import com.groupthree.ordersystem.vo.UserVo;
 
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 /**
  * <p>
@@ -42,7 +43,7 @@ public interface UserService extends IService<User> {
      * @param phoneNumber
      * @return
      */
-    public Object login(HttpServletRequest request, String phoneNumber, String passWord);
+    public Object login(HttpServletRequest request, String phoneNumber, String passWord) throws UnsupportedEncodingException;
 
 
     /**
