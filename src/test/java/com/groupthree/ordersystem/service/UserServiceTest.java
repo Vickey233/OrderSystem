@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.io.UnsupportedEncodingException;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +32,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void login() {
+    public void login() throws UnsupportedEncodingException {
         userService.login(request, "", "");
     }
 
