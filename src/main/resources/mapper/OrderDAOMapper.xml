@@ -22,11 +22,11 @@
     </select>
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
         select a.orderId,b.userId,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
-        from order a
-             user b
-             address c
+        from `order` a,
+            `user` b,
+            address c
         where a.userId=b.userId
-          and b.addressId=c.addressId
+          and a.addressId=c.addressId
         <if test ="begintime != null and begintime != ' '">
           and a.createDate=#{begintime}
         </if>

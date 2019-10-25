@@ -12,7 +12,7 @@ public class OrderVO {
 
     private Integer userId;
 
-    private Integer realName;
+    private String realName;
 
     private String phoneNumber;
 

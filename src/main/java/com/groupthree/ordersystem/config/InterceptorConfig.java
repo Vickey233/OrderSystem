@@ -16,7 +16,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        log.info("登录拦截，未登录无法访问其他界面！");
+//        log.info("登录拦截，未登录无法访问其他界面！");
 //        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
     }
 }
