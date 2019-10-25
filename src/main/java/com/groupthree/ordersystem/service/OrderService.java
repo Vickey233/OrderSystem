@@ -4,6 +4,8 @@ import com.groupthree.ordersystem.entity.Order;
 import com.baomidou.mybatisplus.service.IService;
 import com.groupthree.ordersystem.vo.TempOrderVo;
 
+import java.util.Date;
+
 /**
  * <p>
  * 服务类
@@ -54,6 +56,8 @@ public interface OrderService extends IService<Order> {
      * @return
      */
     public Object getOrderPageByTime(Integer pageNo, Integer pageSize,String begintime, String overtime);
+
+    public Object getOrderPageByTime(Integer pageNo, Integer pageSize, Date begintime, Date overtime);
 
     public Object insertOrder(TempOrderVo tempOrderVo);
 

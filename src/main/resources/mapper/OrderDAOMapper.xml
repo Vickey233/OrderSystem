@@ -28,10 +28,10 @@
         where a.userId=b.userId
           and a.addressId=c.addressId
         <if test ="begintime != null and begintime != ' '">
-          and a.createDate=#{begintime}
+          and a.createDate='#{begintime}'
         </if>
         <if test ="overtime != null and overtime != ' '">
-          and a.updateDate=#{overtime}
+          and a.updateDate='#{overtime}'
         </if>
     </select>
 </mapper>

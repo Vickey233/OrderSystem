@@ -38,7 +38,6 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
         log.info("获取商品列表");
         List<CommodityVo> commodityVoList = null;
         Page<CommodityVo> page = new Page<>(pageNo, pageSize);
-        System.out.println(commodityName);
         commodityVoList = baseMapper.getCommodityPage(commodityName, page);
         page.setRecords(commodityVoList);
         return ResultUtil.success(page);

@@ -5,9 +5,13 @@ import com.groupthree.ordersystem.aop.WebLog;
 import com.groupthree.ordersystem.service.OrderService;
 import com.groupthree.ordersystem.vo.TempOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * <p>
@@ -34,6 +38,16 @@ public class OrderController {
     @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
     public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @RequestParam(value = "begintime",required = false) String begintime, @RequestParam(value = "overtime",required = false) String overtime) {
         return orderService.getOrderPageByTime(pageNo, pageSize, begintime, overtime);
+    }
+
+    @WebLog(description = "获取订单列表")
+//    @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
+    public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @DateTimeFormat(pattern = "yyyy-MM-dd") Date begintime, @DateTimeFormat(pattern = "yyyy-MM-dd") Date overtime) {
+        SimpleDateFormat begin =new SimpleDateFormat("yyyy-MM-dd");
+        String t_begin=begin.format(begintime);
+        SimpleDateFormat over =new SimpleDateFormat("yyyy-MM-dd");
+        String t_over=over.format(begintime);
+        return orderService.getOrderPageByTime(pageNo, pageSize, t_begin, t_over);
     }
 
     @WebLog(description = "获取订单状态")

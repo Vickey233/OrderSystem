@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+        PaginationInterceptor page = new PaginationInterceptor();
+        //指定 MySQL 方言，否则它可能不知道怎么写分页函数
+        page.setDialectType("mysql");
+        return page;
     }
 }

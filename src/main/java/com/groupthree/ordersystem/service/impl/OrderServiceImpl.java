@@ -60,6 +60,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
         log.info("根据时间获取订单列表");
         List<OrderVO> orderVOList = null;
         Page<OrderVO> page = new Page<>(pageNo, pageSize);
+        orderVOList = baseMapper.getOrderPageByTime(begintime, overtime,page);
+        page.setRecords(orderVOList);
+        return ResultUtil.success(page);
+    }
+
+    public Object getOrderPageByTime(Integer pageNo, Integer pageSize, Date begintime, Date overtime) {
+        log.info("根据时间获取订单列表");
+        List<OrderVO> orderVOList = null;
+        Page<OrderVO> page = new Page<>(pageNo, pageSize);
         orderVOList = baseMapper.getOrderPageByTime(begintime, overtime);
         page.setRecords(orderVOList);
         return ResultUtil.success(page);
