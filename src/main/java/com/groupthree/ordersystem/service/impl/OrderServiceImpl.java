@@ -57,7 +57,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     }
 
     public Object getOrderPageByTime(Integer pageNo, Integer pageSize, String begintime, String overtime) {
-        log.info("根据时间获取订单列表，默认第一页，每页五条数据");
+        log.info("根据时间获取订单列表");
         List<OrderVO> orderVOList = null;
         Page<OrderVO> page = new Page<>(pageNo, pageSize);
         orderVOList = baseMapper.getOrderPageByTime(begintime, overtime);
