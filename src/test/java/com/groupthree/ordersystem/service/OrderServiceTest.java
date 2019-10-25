@@ -37,7 +37,7 @@ public class OrderServiceTest {
 
     @Test
     public void getOrderPageByTime() {
-        orderService.getOrderPageByTime("", "");
+        orderService.getOrderPageByTime(1,5,"", "");
     }
 
     @Test

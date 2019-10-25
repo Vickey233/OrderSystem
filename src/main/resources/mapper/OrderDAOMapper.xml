@@ -36,13 +36,12 @@
 <!--    </select>-->
 
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
-        select * from `order`
-        where 1=1
+        select * from `order` where 1=1
         <if test ="begintime != null and begintime != ' '">
-            and a.createDate=#{begintime}
+            and createDate=#{begintime}
         </if>
         <if test ="overtime != null and overtime != ' '">
-            and a.updateDate=#{overtime}
+            and updateDate=#{overtime}
         </if>
     </select>
 
