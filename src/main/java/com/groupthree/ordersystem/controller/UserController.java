@@ -48,6 +48,12 @@ public class UserController {
         return userService.addUser(user);
     }
 
+    @WebLog(description = "获取用户信息")
+    @RequestMapping(value = "/userMsg", method = RequestMethod.GET)
+    public Object userMsg(@RequestParam("userId") Integer userId){
+        return ResultUtil.success(userService.getUserById(userId));
+    }
+
     @WebLog(description = "冲钱")
     @RequestMapping(value = "/addMoney", method = RequestMethod.POST)
     public Object addMoney(@RequestParam("userId") Integer userId, @RequestParam("sum") Double sum) {
