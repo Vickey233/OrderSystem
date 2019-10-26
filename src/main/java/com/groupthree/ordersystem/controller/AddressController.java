@@ -31,7 +31,7 @@ public class AddressController {
     }
 
     @WebLog(description = "新增地址")
-    @RequestMapping(value = "/addAddress", method = RequestMethod.PUT)
+    @RequestMapping(value = "/addAddress", method = RequestMethod.POST)
     public Object addAddress(@RequestParam("userId") Integer userId, @RequestBody AddressVo addressVo) {
         return addressService.insertAddress(userId,addressVo);
     }

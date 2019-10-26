@@ -26,10 +26,10 @@
         where a.userId=b.userId
         and a.addressId=c.addressId
         <if test="begintime != null">
-            and a.createDate <![CDATA[>=]]> #{begintime,jdbcType=DATE}
+            and a.createDate <![CDATA[>=]]> #{begintime,jdbcType=TIMESTAMP}
         </if>
         <if test="overtime != null">
-            and a.updateDate <![CDATA[<=]]> #{overtime,jdbcType=DATE}
+            and a.updateDate <![CDATA[<=]]> #{overtime,jdbcType=TIMESTAMP}
         </if>
             </select>
         <select id="getOrderByUserId" resultType="com.groupthree.ordersystem.vo.UserOrderVo">

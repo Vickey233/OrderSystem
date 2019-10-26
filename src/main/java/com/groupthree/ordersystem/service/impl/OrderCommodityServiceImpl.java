@@ -9,6 +9,9 @@ import com.groupthree.ordersystem.vo.OrderComVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -28,6 +31,11 @@ public class OrderCommodityServiceImpl extends ServiceImpl<OrderCommodityDAO, Or
         log.info("获取订单详细菜品信息");
         List<OrderComVo> commodityVoList = null;
         commodityVoList = baseMapper.getOrderComVo(orderId,userId);
+        Iterator<OrderComVo> iter = commodityVoList.iterator();
+        while (iter.hasNext()) {
+            OrderComVo o = (OrderComVo) iter.next();
+            o.setArriverDate(getNewDate(o.getCreateDate()));
+        }
         return ResultUtil.success(commodityVoList);
     }
 
@@ -43,5 +51,13 @@ public class OrderCommodityServiceImpl extends ServiceImpl<OrderCommodityDAO, Or
             baseMapper.insert(orderCommodity);
         }
         return ResultUtil.successTip("成功向订单中插入菜品");
+    }
+
+    public Date getNewDate(Date cur) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(cur);   //设置时间
+        c.add(Calendar.MINUTE, 30); //日期分钟加1,Calendar.DATE(天),Calendar.HOUR(小时)
+        Date date = c.getTime(); //结果
+        return date;
     }
 }
