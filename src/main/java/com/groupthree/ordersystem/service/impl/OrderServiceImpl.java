@@ -41,12 +41,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     @Autowired
     private OrderCommodityService commodityService;
 
-    //    @Override
     public Long getId() {
         return null;
     }
 
-    @Override
     public Object getOrderPage(Integer pageNo, Integer pageSize) {
         log.info("获取订单列表");
         List<OrderVO> orderVOList = null;
@@ -56,20 +54,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
         return ResultUtil.success(page);
     }
 
-    public Object getOrderPageByTime(Integer pageNo, Integer pageSize, String begintime, String overtime) {
-        log.info("根据时间获取订单列表");
-        List<OrderVO> orderVOList = null;
-        Page<OrderVO> page = new Page<>(pageNo, pageSize);
-        orderVOList = baseMapper.getOrderPageByTime(begintime, overtime,page);
-        page.setRecords(orderVOList);
-        return ResultUtil.success(page);
-    }
 
     public Object getOrderPageByTime(Integer pageNo, Integer pageSize, Date begintime, Date overtime) {
         log.info("根据时间获取订单列表");
         List<OrderVO> orderVOList = null;
         Page<OrderVO> page = new Page<>(pageNo, pageSize);
-        orderVOList = baseMapper.getOrderPageByTime(begintime, overtime);
+        orderVOList = baseMapper.getOrderPageByTime(begintime, overtime,page);
         page.setRecords(orderVOList);
         return ResultUtil.success(page);
     }

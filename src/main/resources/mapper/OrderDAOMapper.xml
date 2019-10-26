@@ -22,16 +22,14 @@
     </select>
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
         select a.orderId,b.userId,a.statue,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
-        from `order` a,
-            `user` b,
-            address c
+        from `order` a,`user` b,address c
         where a.userId=b.userId
-          and a.addressId=c.addressId
-        <if test ="begintime != null and begintime != ' '">
-          and a.createDate='#{begintime}'
+        and a.addressId=c.addressId
+        <if test="begintime != null">
+            and a.createDate <![CDATA[>=]]> #{begintime,jdbcType=DATE}
         </if>
-        <if test ="overtime != null and overtime != ' '">
-          and a.updateDate='#{overtime}'
+        <if test="overtime != null">
+            and a.updateDate <![CDATA[<=]]> #{overtime,jdbcType=DATE}
         </if>
-    </select>
-</mapper>
+            </select>
+        </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
 
 import java.io.*;
 import java.util.UUID;
@@ -45,7 +46,7 @@ public class ImgController {
      * @return
      */
     @WebLog(description = "上传图片")
-//    @RequestMapping("/fileUpload")
+    @RequestMapping("/fileUpload")
     public Object upload(@RequestParam("fileName") MultipartFile file) {
 
         // 要上传的目标文件存放路径
@@ -62,16 +63,18 @@ public class ImgController {
         return ResultUtil.error("上传失败！");
     }
 
-    @RequestMapping("/fileUpload")
-    public Object upload(@RequestParam("fileName") byte[] file) throws IOException {
-
-        OutputStream out = new FileOutputStream(new File(path + UUIDUtils.getUUID() + ".jpg"));
-        out.write(file);
-        out.flush();
-        System.out.println("download success");
-        out.close();
-        return ResultUtil.successTip("下载成功");
-    }
+//    @RequestMapping("/fileUpload")
+//    public Object upload(@RequestParam("fileName") String file) throws IOException {
+//
+//        BASE64Decoder decoder = new BASE64Decoder();
+//        byte[] imgbyte = decoder.decodeBuffer(file);
+//        OutputStream out = new FileOutputStream(new File(path + UUIDUtils.getUUID() + ".jpg"));
+//        out.write(imgbyte);
+//        out.flush();
+//        System.out.println("download success");
+//        out.close();
+//        return ResultUtil.successTip("下载成功");
+//    }
 
     /**
      * 显示单张图片

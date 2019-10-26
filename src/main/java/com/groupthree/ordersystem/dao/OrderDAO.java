@@ -23,5 +23,5 @@ public interface OrderDAO extends BaseMapper<Order> {
 
     public List<OrderVO> getOrderPageByTime(@Param("begintime") String begintime,@Param("overtime") String overtime, Page<OrderVO> page);
 
-    public List<OrderVO> getOrderPageByTime(@Param("begintime") Date begintime, @Param("overtime") Date overtime);
+    public List<OrderVO> getOrderPageByTime(@Param("begintime") Date begintime, @Param("overtime") Date overtime, Page<OrderVO> page);
 }

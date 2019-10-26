@@ -4,12 +4,16 @@ package com.groupthree.ordersystem.controller;
 import com.groupthree.ordersystem.aop.WebLog;
 import com.groupthree.ordersystem.service.OrderService;
 import com.groupthree.ordersystem.vo.TempOrderVo;
+import lombok.extern.slf4j.Slf4j;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
+import sun.rmi.runtime.Log;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +27,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/order")
+@Slf4j
 public class OrderController {
 
     @Autowired
@@ -35,20 +40,36 @@ public class OrderController {
     }
 
     @WebLog(description = "获取订单列表")
-//    @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
-    public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @RequestParam(value = "begintime",required = false) String begintime, @RequestParam(value = "overtime",required = false) String overtime) {
-        return orderService.getOrderPageByTime(pageNo, pageSize, begintime, overtime);
-    }
-
-    @WebLog(description = "获取订单列表")
     @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
-    public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @DateTimeFormat(pattern = "yyyy-MM-dd") Date begintime, @DateTimeFormat(pattern = "yyyy-MM-dd") Date overtime) {
-        SimpleDateFormat begin =new SimpleDateFormat("yyyy-MM-dd");
-        String t_begin=begin.format(begintime);
-        SimpleDateFormat over =new SimpleDateFormat("yyyy-MM-dd");
-        String t_over=over.format(overtime);
-        System.out.println(t_begin+"     "+t_over);
-        return orderService.getOrderPageByTime(pageNo, pageSize, t_begin, t_over);
+    public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @RequestParam(value = "begintime",required = false) String begintime, @RequestParam(value = "overtime",required = false) String overtime) throws ParseException {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        Date begindate =new Date();
+        Date overdate =new Date();
+        if (begintime == null && overtime == null){
+            log.info("时间段为空，默认查全部");
+            return orderService.getOrderPage(pageNo, pageSize);
+        }
+        else if(begintime == null && overdate != null)
+        {
+            log.info("开始时间为空，默认为1949-01-01");
+            String b_time="1949-01-01";
+            begindate=sdf.parse(b_time);
+            overdate=sdf.parse(overtime);
+        }
+        else if(begintime != null && overdate == null)
+        {
+            log.info("截止时间为空，默认为9999-12-30");
+            begindate = sdf.parse(begintime);
+            String o_time="9999-12-30";
+            overdate = sdf.parse(o_time);
+        }
+        else
+        {
+            begindate=sdf.parse(begintime);
+            overdate=sdf.parse(overtime);
+        }
+        System.out.println(begindate+"       "+overdate);
+        return orderService.getOrderPageByTime(pageNo, pageSize, begindate, overdate);
     }
 
     @WebLog(description = "获取订单状态")

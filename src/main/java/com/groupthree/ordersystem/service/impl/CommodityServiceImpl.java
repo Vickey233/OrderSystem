@@ -51,7 +51,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
 //            baseMapper.insertOne(commodityName, commodityDesc, imagePath, price);
             commodity=new Commodity();
             commodity.setCommodityName(commodityVo.getCommodityName());
-            commodity.setCommodityDesc(commodityVo.getCommodityName());
+            commodity.setCommodityDesc(commodityVo.getCommodityDesc());
             commodity.setImagePath(commodityVo.getImagePath());
             commodity.setPrice(commodityVo.getPrice());
             log.info("插入商品");
