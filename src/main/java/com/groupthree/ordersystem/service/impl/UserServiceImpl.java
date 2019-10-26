@@ -71,7 +71,11 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         log.info("注册/添加用户");
         User tmp = baseMapper.findUserByPhoneNumber(user.getPhoneNumber());
         if (tmp == null) {
-            user.setPassWord(MD5Util.md5(user.getPassWord(), user.getPassWord()));
+            log.info("对密码进行解密");
+            Base64.Decoder decoder = Base64.getDecoder();
+            String depassword = new String(decoder.decode(user.getPassWord()),"UTF-8");
+            System.out.println("解密后的密码是："+depassword);
+            user.setPassWord(MD5Util.md5(depassword, depassword));
             baseMapper.insert(user);
             return ResultUtil.success("注册成功");
         }
