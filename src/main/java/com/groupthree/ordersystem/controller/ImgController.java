@@ -54,10 +54,10 @@ public class ImgController {
         String localPath = path;
         // 上传成功或者失败的提示
         String msg = "";
-//        if (FileUtils.upload(file, localPath, file.getOriginalFilename())){
-        if (FileUtils.upload(file, localPath, file.getOriginalFilename())) {
+        String filename=FileUtils.upload(file, localPath, file.getOriginalFilename());
+        if (filename!="失败") {
             // 上传成功，给出页面提示
-            return ResultUtil.success("上传成功!", file.getOriginalFilename());
+            return ResultUtil.success("上传成功!", filename);
 //            return ResultUtil.success("上传成功!", resourceLoader.getResource("file:"+path+file.getOriginalFilename()).toString());
         }
         return ResultUtil.error("上传失败！");
@@ -82,7 +82,7 @@ public class ImgController {
      * @return
      */
     @WebLog(description = "获取图片地址")
-    @RequestMapping("/show")
+//    @RequestMapping("/show")
     public Object showPhotos(String fileName) {
 
         try {

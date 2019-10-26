@@ -106,6 +106,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
         return ResultUtil.error("密码错误，支付失败！");
     }
 
+    public Object orderStatistics(Date begintime, Date overtime){
+        return null;
+    }
     /**
      * 生成订单编号  时间戳+2位整数
      *

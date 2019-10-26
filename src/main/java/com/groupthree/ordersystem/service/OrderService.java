@@ -58,6 +58,18 @@ public interface OrderService extends IService<Order> {
 
     public Object getOrderPageByTime(Integer pageNo, Integer pageSize, Date begintime, Date overtime);
 
+    /**
+     * 插入订单
+     * @param tempOrderVo
+     * @return
+     */
     public Object insertOrder(TempOrderVo tempOrderVo);
 
+    /**
+     * 统计订单
+     * @param begintime
+     * @param overtime
+     * @return
+     */
+    public Object orderStatistics(Date begintime, Date overtime);
 }

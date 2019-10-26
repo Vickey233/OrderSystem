@@ -16,14 +16,15 @@ public class FileUtils {
      * @param fileName 源文件名
      * @return
      */
-    public static boolean upload(MultipartFile file, String path, String fileName) {
+    public static String upload(MultipartFile file, String path, String fileName) {
 
 
         // 生成新的文件名
-//        String realPath = path + "/" + FileNameUtils.getFileName(fileName);
+        String filename=FileNameUtils.getFileName(fileName);
+        String realPath = path + "/" + filename;
 
         //使用原文件名
-        String realPath = path + "/" + fileName;
+//        String realPath = path + "/" + fileName;
 
         File dest = new File(realPath);
 
@@ -35,17 +36,18 @@ public class FileUtils {
         try {
             //保存文件
             file.transferTo(dest);
-            return true;
+//            return true;
+            return filename;
         } catch (IllegalStateException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return false;
+//            return false;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return false;
+//            return false;
         }
-
+        return "失败";
     }
 
 
