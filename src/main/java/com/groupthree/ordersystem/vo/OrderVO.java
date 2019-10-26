@@ -20,6 +20,8 @@ public class OrderVO {
 
     private String address;
 
+    private Double sum;
+
     private Date createDate;
 
     private Date updateDate;

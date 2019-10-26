@@ -32,7 +32,7 @@
         select a.commodityName,b.count,c.createDate,c.sum
         from `commodity` a,`order_commodity` b,`order` c
         where a.commodityId=b.commodityId
-<!--        and c.userId=#{userId}-->
+        and b. orderId=c.orderId
         and c.orderId=#{orderId}
     </select>
 
