@@ -18,7 +18,8 @@
         orderId, userId,addressId, statue, `sum`, createDate, updateDate
     </sql>
     <select id="getOrderPage" resultType="com.groupthree.ordersystem.vo.OrderVO">
-        select * from `order`
+        select a.orderId,b.userId,a.statue,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
+        from `order` a,`user` b,address c
     </select>
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
         select a.orderId,b.userId,a.statue,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate

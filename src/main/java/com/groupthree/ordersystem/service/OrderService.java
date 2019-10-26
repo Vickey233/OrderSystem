@@ -4,6 +4,7 @@ import com.groupthree.ordersystem.entity.Order;
 import com.baomidou.mybatisplus.service.IService;
 import com.groupthree.ordersystem.vo.TempOrderVo;
 
+import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -56,7 +57,7 @@ public interface OrderService extends IService<Order> {
      * @return
      */
 
-    public Object getOrderPageByTime(Integer pageNo, Integer pageSize, Date begintime, Date overtime);
+    public Object getOrderPageByTime(Integer pageNo, Integer pageSize, String begintime, String overtime) throws ParseException;
 
     /**
      * 按用户id查询订单

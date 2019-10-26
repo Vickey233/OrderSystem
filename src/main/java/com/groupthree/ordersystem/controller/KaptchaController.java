@@ -13,6 +13,7 @@ import com.groupthree.ordersystem.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
@@ -34,7 +35,7 @@ public class KaptchaController {
      * @throws Exception
      */
     @WebLog(description = "获取验证码")
-    @RequestMapping("/defaultKaptcha")
+    @RequestMapping(value = "/defaultKaptcha")
     public void defaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws Exception {
         byte[] captchaChallengeAsJpeg = null;

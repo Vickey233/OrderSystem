@@ -125,6 +125,6 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         }
 
         baseMapper.updateById(user);
-        return ResultUtil.successTip("冲钱成功！");
+        return ResultUtil.success("冲钱成功！",user.getMoney());
     }
 }
