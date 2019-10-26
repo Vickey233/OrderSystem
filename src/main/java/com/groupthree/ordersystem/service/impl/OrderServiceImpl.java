@@ -12,6 +12,7 @@ import com.groupthree.ordersystem.utils.MD5Util;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.OrderVO;
 import com.groupthree.ordersystem.vo.TempOrderVo;
+import com.groupthree.ordersystem.vo.UserOrderVo;
 import com.sun.org.apache.regexp.internal.RE;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
         return ResultUtil.success(page);
     }
 
+    public Object getOrderPageByUserId(Integer userId){
+        List<UserOrderVo> orderVOList = null;
+        orderVOList=baseMapper.getOrderByUserId(userId);
+        System.out.println(userId);
+        System.out.println(orderVOList);
+        return ResultUtil.success(orderVOList);
+    }
     public Object getOrderStatue(String orderId) {
         log.info("获取订单状态");
         Order order = this.selectById(orderId);

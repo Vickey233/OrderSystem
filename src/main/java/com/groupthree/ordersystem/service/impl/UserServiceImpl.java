@@ -110,7 +110,16 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     public Object moneyBack(Integer userId, Double sum) {
         log.info("不买了，还钱");
         User user = this.getUserById(userId);
-        user.setMoney(user.getMoney() + sum);
+        System.out.println(user);
+        if(user.getMoney()==null)
+        {
+            user.setMoney(sum);
+        }
+        else
+        {
+            user.setMoney(user.getMoney() + sum);
+        }
+
         baseMapper.updateById(user);
         return ResultUtil.successTip("冲钱成功！");
     }

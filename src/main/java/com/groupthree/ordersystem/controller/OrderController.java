@@ -33,13 +33,13 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @WebLog(description = "获取订单列表")
-//    @RequestMapping(value = "/orderList", method = RequestMethod.GET)
-    public Object orderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
-        return orderService.getOrderPage(pageNo, pageSize);
+    @WebLog(description = "根据用户id获取订单列表")
+    @RequestMapping(value = "/userOrderList", method = RequestMethod.GET)
+    public Object userOrderList(@RequestParam("userId") Integer userId) {
+        return orderService.getOrderPageByUserId(userId);
     }
 
-    @WebLog(description = "获取订单列表")
+    @WebLog(description = "根据时间获取订单列表")
     @RequestMapping(value = "/timeOrderList", method = RequestMethod.GET)
     public Object timeOrderList(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize, @RequestParam(value = "begintime",required = false) String begintime, @RequestParam(value = "overtime",required = false) String overtime) throws ParseException {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -71,8 +71,6 @@ public class OrderController {
         System.out.println(begindate+"       "+overdate);
         return orderService.getOrderPageByTime(pageNo, pageSize, begindate, overdate);
     }
-
-
 
     @WebLog(description = "获取订单状态")
     @RequestMapping(value = "/orderStatue", method = RequestMethod.GET)
