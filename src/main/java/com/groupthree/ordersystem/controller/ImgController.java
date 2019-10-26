@@ -49,7 +49,7 @@ public class ImgController {
      */
     @WebLog(description = "上传图片")
     @RequestMapping("/fileUpload")
-    public Object upload(@RequestParam("fileName") MultipartFile file) {
+    public Object upload(@RequestParam("file") MultipartFile file) {
 
         log.info("要上传的目标文件存放路径");
         String localPath = path;

@@ -29,7 +29,7 @@
         values(#{orderId},#{commodityId},#{count})
     </insert>
     <select id="getOrderComVo" resultType="com.groupthree.ordersystem.vo.OrderComVo">
-        select a.commodityName,b.count,c.createDate,c.sum
+        select a.commodityName,b.count,c.createDate,c.sum,a.price
         from `commodity` a,`order_commodity` b,`order` c
         where a.commodityId=b.commodityId
         and b. orderId=c.orderId
