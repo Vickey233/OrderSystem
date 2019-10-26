@@ -4,6 +4,7 @@ import com.groupthree.ordersystem.aop.WebLog;
 import com.groupthree.ordersystem.utils.FileUtils;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.utils.UUIDUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
@@ -19,6 +20,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/image")
+@Slf4j
 public class ImgController {
 
     private final ResourceLoader resourceLoader;
@@ -49,32 +51,15 @@ public class ImgController {
     @RequestMapping("/fileUpload")
     public Object upload(@RequestParam("fileName") MultipartFile file) {
 
-        // 要上传的目标文件存放路径
-//        String localPath = "E:/Develop/Files/Photos";
+        log.info("要上传的目标文件存放路径");
         String localPath = path;
-        // 上传成功或者失败的提示
-        String msg = "";
+        log.info("上传文件");
         String filename=FileUtils.upload(file, localPath, file.getOriginalFilename());
         if (filename!="失败") {
-            // 上传成功，给出页面提示
             return ResultUtil.success("上传成功!", filename);
-//            return ResultUtil.success("上传成功!", resourceLoader.getResource("file:"+path+file.getOriginalFilename()).toString());
         }
         return ResultUtil.error("上传失败！");
     }
-
-//    @RequestMapping("/fileUpload")
-//    public Object upload(@RequestParam("fileName") String file) throws IOException {
-//
-//        BASE64Decoder decoder = new BASE64Decoder();
-//        byte[] imgbyte = decoder.decodeBuffer(file);
-//        OutputStream out = new FileOutputStream(new File(path + UUIDUtils.getUUID() + ".jpg"));
-//        out.write(imgbyte);
-//        out.flush();
-//        System.out.println("download success");
-//        out.close();
-//        return ResultUtil.successTip("下载成功");
-//    }
 
     /**
      * 显示单张图片
@@ -86,8 +71,6 @@ public class ImgController {
     public Object showPhotos(String fileName) {
 
         try {
-            // 由于是读取本机的文件，file是一定要加上的， path是在application配置文件中的路径
-//            System.out.println(resourceLoader.getResource("file:" + path + fileName));
             return ResultUtil.success("URL", resourceLoader.getResource("file:" + path + fileName).toString());
         } catch (Exception e) {
             return ResultUtil.error("获取图片失败！");
