@@ -36,7 +36,7 @@
         <select id="getOrderByUserId" resultType="com.groupthree.ordersystem.vo.UserOrderVo">
         select orderId,statue,`sum`
         from `order`
-        where
+        where 1=1
         <if test="userId != null and userId!= ' '">
             and userId=#{userId}
         </if>
