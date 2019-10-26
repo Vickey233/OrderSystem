@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface OrderCommodityDAO extends BaseMapper<OrderCommodity> {
 
-    public List<OrderComVo> getOrderComVo(@Param("orderId") String orderId,@Param("userId") Integer userId);
+    public List<OrderComVo> getOrderComVo(@Param("orderId") String orderId);
 
 //    public Object insertCommodity(String orderId, Integer commodityId,Integer count);
 }
