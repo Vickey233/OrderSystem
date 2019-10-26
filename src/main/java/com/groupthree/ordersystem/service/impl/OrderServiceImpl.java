@@ -68,8 +68,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
     public Object getOrderPageByUserId(Integer userId){
         List<UserOrderVo> orderVOList = null;
         orderVOList=baseMapper.getOrderByUserId(userId);
-        System.out.println(userId);
-        System.out.println(orderVOList);
         return ResultUtil.success(orderVOList);
     }
     public Object getOrderStatue(String orderId) {
