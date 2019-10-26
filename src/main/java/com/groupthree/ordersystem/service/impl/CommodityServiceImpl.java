@@ -45,6 +45,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityDAO, Commodity> i
 
     public Object insertOne(CommodityVo commodityVo) {
         log.info("判断商品名是否存在商品");
+        String name=commodityVo.getCommodityName();
+        System.out.println(name);
         Commodity commodity=baseMapper.getByCommodityName(commodityVo.getCommodityName());
         if(commodity==null)
         {

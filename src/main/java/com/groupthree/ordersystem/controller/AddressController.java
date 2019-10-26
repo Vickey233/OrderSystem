@@ -3,13 +3,11 @@ package com.groupthree.ordersystem.controller;
 
 import com.groupthree.ordersystem.aop.WebLog;
 import com.groupthree.ordersystem.service.AddressService;
+import com.groupthree.ordersystem.vo.AddressVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -30,5 +28,11 @@ public class AddressController {
     @RequestMapping(value = "/addressList", method = RequestMethod.GET)
     public Object addressList(@RequestParam("userId") Integer userId) {
         return addressService.getAddressVo(userId);
+    }
+
+    @WebLog(description = "新增地址")
+    @RequestMapping(value = "/addAddress", method = RequestMethod.PUT)
+    public Object addressList(@RequestParam("userId") Integer userId, @RequestBody AddressVo addressVo) {
+        return addressService.insertAddress(userId,addressVo);
     }
 }
