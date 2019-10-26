@@ -18,7 +18,7 @@ public class OrderCommodityServiceTest {
 
     @Test
     public void getOrderComVo() {
-        orderCommodityService.getOrderComVo("201910240115710345");
+        orderCommodityService.getOrderComVo("201910240115710345",1);
     }
 
     @Test

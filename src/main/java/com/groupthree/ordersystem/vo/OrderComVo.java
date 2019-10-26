@@ -14,4 +14,6 @@ public class OrderComVo {
     private Integer count;
 
     private Date createDate;
+
+    private Date arriverDate;
 }

@@ -19,7 +19,7 @@ public interface OrderCommodityService extends IService<OrderCommodity> {
      *
      * @return
      */
-    public Object getOrderComVo(String orderId);
+    public Object getOrderComVo(String orderId,Integer userId);
 
     /**
      * 插入商品列表

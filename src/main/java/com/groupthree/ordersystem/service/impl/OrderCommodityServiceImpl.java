@@ -24,10 +24,10 @@ import java.util.List;
 @Slf4j
 public class OrderCommodityServiceImpl extends ServiceImpl<OrderCommodityDAO, OrderCommodity> implements OrderCommodityService {
 
-    public Object getOrderComVo(String orderId){
+    public Object getOrderComVo(String orderId,Integer userId){
         log.info("获取订单详细菜品信息");
         List<OrderComVo> commodityVoList = null;
-        commodityVoList = baseMapper.getOrderComVo(orderId);
+        commodityVoList = baseMapper.getOrderComVo(orderId,userId);
         return ResultUtil.success(commodityVoList);
     }
 

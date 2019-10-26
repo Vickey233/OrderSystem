@@ -16,17 +16,24 @@
     <sql id="Base_Column_List">
         ordercomId, orderId, commodityId, count, createDate, updateDate
     </sql>
-    <select id="getOrderComVo" resultType="com.groupthree.ordersystem.vo.OrderComVo">
-        select b.commodityName,b.price,a.count,a.createDate
-        from order_commodity a,commodity b
-        where a.commodityId=b.commodityId
-        <if test ="orderId != null and orderId != ' '">
-            and a.orderId=#{orderId}
-        </if>
-    </select>
+<!--    <select id="getOrderComVo" resultType="com.groupthree.ordersystem.vo.OrderComVo">-->
+<!--        select b.commodityName,b.price,a.count,a.createDate-->
+<!--        from order_commodity a,commodity b-->
+<!--        where a.commodityId=b.commodityId-->
+<!--        <if test ="orderId != null and orderId != ' '">-->
+<!--            and a.orderId=#{orderId}-->
+<!--        </if>-->
+<!--    </select>-->
     <insert id="insertCommodity">
         insert into order_commodity(orderId,commodityId,count) 
         values(#{orderId},#{commodityId},#{count})
     </insert>
+    <select id="getOrderComVo" resultType="com.groupthree.ordersystem.vo.OrderComVo">
+        select a.commodityName,b.count,c.createDate,c.sum
+        from `commodity` a,`order_commodity` b,order c
+        where a.commodityId=b.commodityId
+        and c.userId=#{userId}
+        and c.orderId=#{orderId}
+    </select>
 
 </mapper>

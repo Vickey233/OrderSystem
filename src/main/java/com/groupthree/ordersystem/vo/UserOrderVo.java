@@ -7,11 +7,7 @@ import java.util.Date;
 @Data
 public class UserOrderVo {
 
-    private String commodityName;
-
-    private Integer count;
-
-    private Date createDate;
+    private String orderId;
 
     private String statue;
 

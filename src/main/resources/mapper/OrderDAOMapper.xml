@@ -32,13 +32,12 @@
             and a.updateDate <![CDATA[<=]]> #{overtime,jdbcType=DATE}
         </if>
             </select>
-    <select id="getOrderByUserId" resultType="com.groupthree.ordersystem.vo.UserOrderVo">
-        select a.commodityName,b.count,c.createDate,c.sum,c.statue
-        from `commodity` a,`order_commodity` b,`order` c
-        where a.commodityId=b.commodityId
-        and b.orderId=c.orderId
+        <select id="getOrderByUserId" resultType="com.groupthree.ordersystem.vo.UserOrderVo">
+        select orderId,statue,`sum`
+        from `order`
+        where
         <if test="userId != null and userId!= ' '">
-            and c.userId=#{userId,jdbcType=INTEGER}
+            and userId=#{userId}
         </if>
     </select>
 </mapper>
