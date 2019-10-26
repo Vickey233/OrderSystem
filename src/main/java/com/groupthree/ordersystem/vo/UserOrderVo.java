@@ -13,5 +13,7 @@ public class UserOrderVo {
 
     private Date createDate;
 
+    private String statue;
+
     private Double sum;
 }

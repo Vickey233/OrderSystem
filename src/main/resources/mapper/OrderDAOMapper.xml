@@ -33,7 +33,7 @@
         </if>
             </select>
     <select id="getOrderByUserId" resultType="com.groupthree.ordersystem.vo.UserOrderVo">
-        select a.commodityName,b.count,c.createDate,c.sum
+        select a.commodityName,b.count,c.createDate,c.sum,c.statue
         from `commodity` a,`order_commodity` b,`order` c
         where a.commodityId=b.commodityId
         and b.orderId=c.orderId
