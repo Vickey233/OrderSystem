@@ -31,8 +31,8 @@ public class ImgController {
         this.resourceLoader = resourceLoader;
     }
 
-//    @Value("${web.upload-path}")
-    private URL path = this.getClass().getResource("/");
+    @Value("${web.upload-path}")
+    private String path;
 
     /**
      * @param file 要上传的文件
@@ -43,8 +43,7 @@ public class ImgController {
     public Object upload(@RequestParam("file") MultipartFile file) {
 
         log.info("要上传的目标文件存放路径");
-        String localPath = path.getPath()+"images";
-        System.out.println(localPath);
+        String localPath = path;
         log.info("上传文件");
         String filename=FileUtils.upload(file, localPath, file.getOriginalFilename());
         if (filename!="失败") {
