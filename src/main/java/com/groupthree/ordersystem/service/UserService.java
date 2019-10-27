@@ -65,7 +65,7 @@ public interface UserService extends IService<User> {
      *
      * @param user
      */
-    public void updateUser(User user);
+    public Object updateUser(User user);
 
     /**
      * 删除用户
@@ -89,4 +89,13 @@ public interface UserService extends IService<User> {
      * @param sum
      */
     public Object moneyBack(Integer userId, Double sum);
+
+    /**
+     * 修改密码
+     * @param userId
+     * @param passWord
+     * @param newPassWord
+     * @return
+     */
+    public Object updatePassWord(Integer userId, String passWord, String newPassWord) throws Exception;
 }

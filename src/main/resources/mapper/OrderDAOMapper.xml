@@ -20,6 +20,8 @@
     <select id="getOrderPage" resultType="com.groupthree.ordersystem.vo.OrderVO">
         select a.orderId,b.userId,a.sum,a.statue,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate
         from `order` a,`user` b,address c
+        where a. userId=b.userId
+        and a.addressId=c.addressId
     </select>
     <select id="getOrderPageByTime" resultType="com.groupthree.ordersystem.vo.OrderVO">
         select a.orderId,b.userId,a.sum,a.statue,b.realName,b.phoneNumber,c.address,a.createDate,b.updateDate

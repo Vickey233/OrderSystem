@@ -23,7 +23,7 @@
     </select>
     <select id="getCommodityPage" resultType="com.groupthree.ordersystem.vo.CommodityVo">
         select * from commodity where cstatue=1
-        <if test="commodityName != null and commodityName != ' '">
+        <if test="commodityName != null and commodityName != ''">
             and commodityName like CONCAT('%',#{commodityName},'%')
         </if>
     </select>

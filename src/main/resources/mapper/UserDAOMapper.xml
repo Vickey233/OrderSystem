@@ -23,9 +23,9 @@
     </select>
 
     <select id="getUserPage" resultType="com.groupthree.ordersystem.vo.UserVo">
-        select userId, realName, phoneNumber, money from user
+        select userId, realName, phoneNumber, money from `user`
     </select>
     <select id="findUserByPhoneNumber" resultType="com.groupthree.ordersystem.entity.User">
-        select * from user where phoneNumber=#{phoneNumber,jdbcType=VARCHAR};
+        select * from `user` where phoneNumber=#{phoneNumber,jdbcType=VARCHAR};
     </select>
 </mapper>

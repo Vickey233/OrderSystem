@@ -9,6 +9,7 @@ import com.groupthree.ordersystem.utils.MD5Util;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
@@ -82,21 +83,21 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         return ResultUtil.error("该手机号已被注册！");
     }
 
-    public void updateUser(User user) {
+    public Object updateUser(User user) {
         log.info("更新用户基本信息");
         User upuser=this.getUserById(user.getUserId());
         upuser.setRealName(user.getRealName());
         upuser.setPhoneNumber(user.getPhoneNumber());
-        upuser.setMoney(user.getMoney());
-        upuser.setPassWord(user.getPassWord());
+//        upuser.setMoney(user.getMoney());
+//        upuser.setPassWord(user.getPassWord());
         baseMapper.updateById(upuser);
+        return  ResultUtil.successTip("修改用户信息成功");
     }
 
     public void deleteUser(Integer userId) {
         log.info("删除用户");
         User user = this.getUserById(userId);
         baseMapper.deleteById(user);
-
     }
 
     public boolean deductMoney(Integer userId, Double sum) {
@@ -123,8 +124,25 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         {
             user.setMoney(user.getMoney() + sum);
         }
-
         baseMapper.updateById(user);
         return ResultUtil.success("冲钱成功！",user.getMoney());
+    }
+
+    public Object updatePassWord(Integer userId, String passWord, String newPassWord) throws Exception {
+        User user =this.getUserById(userId);
+        log.info("对密码进行解密");
+        Base64.Decoder decoder = Base64.getDecoder();
+        String prePassword = new String(decoder.decode(passWord),"UTF-8");
+        System.out.println("解密后的密码是："+prePassword);
+        if (MD5Util.verify(prePassword, prePassword, user.getPassWord())) {
+            log.info("向session中插入User属性");
+            log.info("对密码进行解密");
+            String nowPassword = new String(decoder.decode(newPassWord),"UTF-8");
+            user.setPassWord(MD5Util.md5(nowPassword,nowPassword));
+            baseMapper.updateById(user);
+            return ResultUtil.success("修改密码成功！", user);
+        }else {
+            return ResultUtil.error("原密码错误!");
+        }
     }
 }

@@ -63,6 +63,12 @@ public class UserController {
     @WebLog(description = "更新用户信息")
     @RequestMapping(value = "/updateMsg", method = RequestMethod.POST)
     public Object updateMsg(@RequestBody User user) {
-        return userService.updateById(user);
+        return userService.updateUser(user);
+    }
+
+    @WebLog(description = "修改用户密码")
+    @RequestMapping(value = "/updatePassWord", method = RequestMethod.POST)
+    public Object updatePassWord(@RequestParam("userId") Integer userId,@RequestParam("passWord") String passWord,@RequestParam("newPassWord") String newPassWord) throws Exception {
+        return userService.updatePassWord(userId,passWord,newPassWord);
     }
 }
