@@ -60,8 +60,8 @@ public class KaptchaController {
     }
 
     @WebLog(description = "验证，验证码")
-    @RequestMapping("/ckeckCode")
-    public Object ckeckCode(HttpServletRequest httpServletRequest,
+    @RequestMapping("/checkCode")
+    public Object checkCode(HttpServletRequest httpServletRequest,
                                                    @RequestParam("code") String code) {
         String rightCode = (String) httpServletRequest.getSession().getAttribute("rightCode");
         String ClientCode = code;
