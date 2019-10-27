@@ -22,6 +22,11 @@ public interface AdminService extends IService<Admin> {
      */
     public Long getId();
 
+    /**
+     * 查询管理员
+     * @param adminId
+     * @return
+     */
     public Admin getAdminById(Integer adminId);
 
     /**

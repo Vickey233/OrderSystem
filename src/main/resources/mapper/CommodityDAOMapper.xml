@@ -57,7 +57,7 @@
         select * from commodity where commodityName=#{commodityName}
     </select>
     <select id="getShowCommodityVo" resultType="com.groupthree.ordersystem.vo.ShowCommodityVo">
-        select commodityName,commodityDesc,price
+        select commodityName,commodityDesc,price,imagePath
         from commodity
         where commodityId=#{commodityId}
     </select>

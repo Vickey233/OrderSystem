@@ -24,5 +24,11 @@ public interface AddressService extends IService<Address> {
 
     public Address getAddressById(Integer addressId);
 
+    /**
+     * 插入地址
+     * @param userId
+     * @param addressVo
+     * @return
+     */
     public Object insertAddress(Integer userId, AddressVo addressVo);
 }

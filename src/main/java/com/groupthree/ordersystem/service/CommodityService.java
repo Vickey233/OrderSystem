@@ -45,7 +45,17 @@ public interface CommodityService extends IService<Commodity> {
      */
     public Object updateMsg(EditCommodityVo editCommodityVo);
 
+    /**
+     * 根据商品id获取商品信息
+     * @param commodityId
+     * @return
+     */
     public Object getCommdityMsg(Integer commodityId);
 
+    /**
+     * 删除商品
+     * @param commodityId
+     * @return
+     */
     public Object delete(Integer commodityId);
 }
