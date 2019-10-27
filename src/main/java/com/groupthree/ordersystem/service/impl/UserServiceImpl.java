@@ -9,6 +9,7 @@ import com.groupthree.ordersystem.utils.MD5Util;
 import com.groupthree.ordersystem.utils.ResultUtil;
 import com.groupthree.ordersystem.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserService {
+
+    public static final Base64.Decoder DECODER = Base64.getDecoder();
 
     public Long getId() {
         return baseMapper.getId();
@@ -54,8 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         HttpSession session = request.getSession();
         if (user != null) {
             log.info("对密码进行解密");
-            Base64.Decoder decoder = Base64.getDecoder();
-            String depassword = new String(decoder.decode(passWord),"UTF-8");
+            String depassword = new String(DECODER.decode(passWord),"UTF-8");
             System.out.println("解密后的密码是："+depassword);
             if (MD5Util.verify(depassword, depassword, user.getPassWord())) {
                 log.info("向session中插入User属性");
@@ -73,10 +75,11 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
         User tmp = baseMapper.findUserByPhoneNumber(user.getPhoneNumber());
         if (tmp == null) {
             log.info("对密码进行解密");
-            Base64.Decoder decoder = Base64.getDecoder();
-            String depassword = new String(decoder.decode(user.getPassWord()),"UTF-8");
+            String depassword = new String(DECODER.decode(user.getPassWord()),"UTF-8");
             System.out.println("解密后的密码是："+depassword);
             user.setPassWord(MD5Util.md5(depassword, depassword));
+            log.info("注册默认充值300元");
+            user.setMoney(300.0);
             baseMapper.insert(user);
             return ResultUtil.success("注册成功");
         }
@@ -131,13 +134,12 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
     public Object updatePassWord(Integer userId, String passWord, String newPassWord) throws Exception {
         User user =this.getUserById(userId);
         log.info("对密码进行解密");
-        Base64.Decoder decoder = Base64.getDecoder();
-        String prePassword = new String(decoder.decode(passWord),"UTF-8");
+        String prePassword = new String(DECODER.decode(passWord),"UTF-8");
         System.out.println("解密后的密码是："+prePassword);
         if (MD5Util.verify(prePassword, prePassword, user.getPassWord())) {
             log.info("向session中插入User属性");
             log.info("对密码进行解密");
-            String nowPassword = new String(decoder.decode(newPassWord),"UTF-8");
+            String nowPassword = new String(DECODER.decode(newPassWord),"UTF-8");
             System.out.println("解密后的新密码是："+prePassword);
             user.setPassWord(MD5Util.md5(nowPassword,nowPassword));
             baseMapper.updateById(user);

@@ -29,6 +29,8 @@ import java.util.List;
 
 public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements AdminService {
 
+    public static final Base64.Decoder DECODER = Base64.getDecoder();
+
     public Long getId() {
         return baseMapper.getId();
     }
@@ -44,8 +46,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminDAO, Admin> implements Ad
         if(admin != null)
         {
             log.info("对密码进行解密");
-            Base64.Decoder decoder = Base64.getDecoder();
-            String depassword = new String(decoder.decode(passWord),"UTF-8");
+            String depassword = new String(DECODER.decode(passWord),"UTF-8");
             System.out.println("解密后的密码是："+depassword);
             if(MD5Util.verify(depassword,depassword,admin.getPassWord()))
             {
