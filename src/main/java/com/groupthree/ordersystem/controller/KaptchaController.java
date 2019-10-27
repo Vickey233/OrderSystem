@@ -5,6 +5,7 @@ import com.groupthree.ordersystem.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
@@ -68,6 +69,25 @@ public class KaptchaController {
         ModelAndView andView = new ModelAndView();
         String rightCode = (String) httpServletRequest.getSession().getAttribute("rightCode");
         String ClientCode = httpServletRequest.getParameter("ClientCode");
+//        rightCode是生成码，ClientCode是表单提交码
+        System.out.println("rightCode:" + rightCode + " ———— ClientCode:" + ClientCode);
+        if (!rightCode.equals(ClientCode)) {
+//            andView.addObject("info", "验证码错误");
+//            andView.setViewName("index");
+            return ResultUtil.error("验证码错误");
+        } else {
+//            andView.addObject("info", "登录成功");
+//            andView.setViewName("success");
+            return ResultUtil.successTip("登录成功");
+        }
+    }
+
+    @RequestMapping("/yanzheng")
+    public Object yanzheng(HttpServletRequest httpServletRequest,
+                                                   @RequestParam("code") String code) {
+//        ModelAndView andView = new ModelAndView();
+        String rightCode = (String) httpServletRequest.getSession().getAttribute("rightCode");
+        String ClientCode = code;
 //        rightCode是生成码，ClientCode是表单提交码
         System.out.println("rightCode:" + rightCode + " ———— ClientCode:" + ClientCode);
         if (!rightCode.equals(ClientCode)) {

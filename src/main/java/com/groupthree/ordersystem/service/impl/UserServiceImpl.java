@@ -138,6 +138,7 @@ public class UserServiceImpl extends ServiceImpl<UserDAO, User> implements UserS
             log.info("向session中插入User属性");
             log.info("对密码进行解密");
             String nowPassword = new String(decoder.decode(newPassWord),"UTF-8");
+            System.out.println("解密后的新密码是："+prePassword);
             user.setPassWord(MD5Util.md5(nowPassword,nowPassword));
             baseMapper.updateById(user);
             return ResultUtil.success("修改密码成功！", user);
