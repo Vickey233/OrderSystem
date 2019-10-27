@@ -62,7 +62,7 @@ public class KaptchaController {
     }
 
 
-    @WebLog(description = "验证，验证码")
+//    @WebLog(description = "验证，验证码")
     @RequestMapping("/checkCode")
     @ResponseBody
     public Object checkCode(HttpServletRequest httpServletRequest,
